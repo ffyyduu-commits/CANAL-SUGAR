@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANAL SUGAR - حجز الوجبات</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <div style="display:flex;align-items:center;justify-content:center;gap:18px;">
+          <img src="canal-sugar-logo.png" alt="شعار شركة القناة للسكر" class="logo" style="width:80px;height:80px;object-fit:contain;">
+          <h1 style="font-size:2.3rem;color:#2b6cb0;margin:0;">شركة القناة للسكر</h1>
+        </div>
+    </header>
+    <main>
+        <section class="login-section">
+            <button class="login-btn">تسجيل الدخول</button>
+        </section>
+        <section class="meal-section">
+            <h2>اختر نوع الوجبة</h2>
+            <select id="meal-type">
+                <option value="breakfast">فطور صباحي</option>
+                <option value="lunch">غداء</option>
+                <option value="dinner">عشاء</option>
+                <option value="suhour">سحور</option>
+            </select>
+            <div class="meal-details">
+                <img src="meal.jpg" alt="Meal Image" id="meal-img">
+                <h3 id="meal-name">اسم الوجبة</h3>
+                <p id="meal-desc">وصف الوجبة يظهر هنا...</p>
+                <div id="meal-options" class="meal-options">
+                  <!-- خيارات الوجبة تظهر هنا -->
+                </div>
+            </div>
+            <button class="reserve-btn">احجز الآن</button>
+        </section>
+    </main>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; CANAL SUGAR 2025</p>
+    </footer>
+    <script>
+    // بيانات الوجبات مع الخيارات
+    const meals = {
+      breakfast: {
+        name: "فطور صباحي",
+        desc: "وجبة صباحية غنية بالطاقة، تشمل خيارات صحية وبديلة.",
+        img: "breakfast.jpg",
+        options: ["اختيار", "بديل", "صحي"]
+      },
+      lunch: {
+        name: "غداء",
+        desc: "وجبة غداء ساخنة أو صحية أو بديلة حسب اختيارك.",
+        img: "lunch.jpg",
+        options: ["ساخن", "بديل", "صحي"]
+      },
+      dinner: {
+        name: "عشاء",
+        desc: "وجبة عشاء خفيفة أو صحية، مثالية لنهاية اليوم.",
+        img: "dinner.jpg",
+        options: ["خفيف", "صحي"]
+      },
+      suhour: {
+        name: "سحور",
+        desc: "وجبة سحور خفيفة وصحية، متاحة في أوقات محددة.",
+        img: "suhour.jpg",
+        options: ["خفيف", "صحي"]
+      }
+    };
+
+    // عناصر الصفحة
+    const mealType = document.getElementById('meal-type');
+    const mealImg = document.getElementById('meal-img');
+    const mealName = document.getElementById('meal-name');
+    const mealDesc = document.getElementById('meal-desc');
+    const mealOptions = document.getElementById('meal-options');
+
+    // دالة لتحديث تفاصيل الوجبة
+    function updateMealDetails(selected) {
+      mealName.textContent = meals[selected].name;
+      mealDesc.textContent = meals[selected].desc;
+      mealImg.src = meals[selected].img;
+      mealImg.alt = meals[selected].name;
+      // عرض الخيارات
+      mealOptions.innerHTML = '';
+      meals[selected].options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        btn.className = 'option-btn';
+        btn.onclick = function() {
+          document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        };
+        mealOptions.appendChild(btn);
+      });
+    }
+
+    // تحديث عند تغيير نوع الوجبة
+    mealType.addEventListener('change', function() {
+      updateMealDetails(mealType.value);
+    });
+
+    // تحديث افتراضي عند تحميل الصفحة
+    updateMealDetails(mealType.value);
+
+    // رسالة عند الحجز
+    document.querySelector('.reserve-btn').addEventListener('click', function() {
+      const selectedOption = document.querySelector('.option-btn.selected');
+      let msg = 'تم حجز الوجبة بنجاح!';
+      if (selectedOption) {
+        msg += `\nنوع الوجبة: ${meals[mealType.value].name} - ${selectedOption.textContent}`;
+      } else {
+        msg += `\nنوع الوجبة: ${meals[mealType.value].name}`;
+      }
+      alert(msg);
+    });
+    </script>
+</body><script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+</html>

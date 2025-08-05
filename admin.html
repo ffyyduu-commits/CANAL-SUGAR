@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المشرف | CANAL SUGAR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="CANAL SUGAR Logo" class="logo">
+        <h1>CANAL SUGAR - لوحة المشرف</h1>
+    </header>
+    <main>
+        <section class="admin-login-section">
+            <h2>تسجيل دخول المشرف</h2>
+            <form class="admin-login-form">
+                <input type="text" placeholder="اسم المستخدم" required>
+                <input type="password" placeholder="كلمة المرور" required>
+                <button type="submit" class="login-btn">دخول</button>
+            </form>
+        </section>
+        <section class="admin-dashboard" style="display:none;">
+            <h2>لوحة التحكم</h2>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>عدد الحجوزات لكل وجبة</h3>
+                    <table class="meals-table">
+                        <tr><th>الوجبة</th><th>عدد الحجوزات</th></tr>
+                        <tr><td>فطور صباحي</td><td>0</td></tr>
+                        <tr><td>غداء</td><td>0</td></tr>
+                        <tr><td>عشاء</td><td>0</td></tr>
+                        <tr><td>سحور</td><td>0</td></tr>
+                    </table>
+                </div>
+                <div class="card">
+                    <h3>تعديل صور الوجبات</h3>
+                    <button class="edit-btn">تعديل الصور</button>
+                </div>
+                <div class="card">
+                    <h3>تفعيل / تعطيل وجبة</h3>
+                    <select>
+                        <option>فطور صباحي</option>
+                        <option>غداء</option>
+                        <option>عشاء</option>
+                        <option>سحور</option>
+                    </select>
+                    <button class="toggle-btn">تفعيل / تعطيل</button>
+                </div>
+                <div class="card">
+                    <h3>تعديل التوقيتات</h3>
+                    <button class="edit-btn">تعديل التوقيتات</button>
+                </div>
+                <div class="card">
+                    <h3>تصدير البيانات</h3>
+                    <button class="export-btn">تصدير</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; CANAL SUGAR 2025</p>
+    </footer>
+</body>
+</html>
