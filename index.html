@@ -3,71 +3,1788 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CANAL SUGAR - حجز الوجبات</title>
-    <link rel="stylesheet" href="style.css">
+    <title>🚀 القناة للسكر 2050 - نظام حجز الوجبات المستقبلي</title>
+
+    <!-- 🎨 التصميم المستقبلي -->
+    <link rel="stylesheet" href="style-2050.css">
     <link rel="manifest" href="manifest.json">
+
+    <!-- 🗄️ قاعدة البيانات -->
+    <script src="database/database.js"></script>
+    <script src="database/api.js"></script>
+
+    <!-- 🎯 Meta Tags للتحسين -->
+    <meta name="description" content="نظام حجز الوجبات المستقبلي لشركة القناة للسكر - تجربة مستخدم متطورة وسلسة">
+    <meta name="keywords" content="حجز وجبات, القناة للسكر, نظام مستقبلي, تطبيق ويب">
+    <meta name="author" content="القناة للسكر">
+    <meta name="theme-color" content="#0a0e27">
+
+    <!-- 🌟 Preload للخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+    <!-- 🚀 الهيدر المستقبلي -->
     <header>
-        <div style="display:flex;align-items:center;justify-content:center;gap:18px;">
-          <img src="canal-sugar-logo.png" alt="شعار شركة القناة للسكر" class="logo" style="width:80px;height:80px;object-fit:contain;">
-          <h1 style="font-size:2.3rem;color:#2b6cb0;margin:0;">شركة القناة للسكر</h1>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">🏭</div>
+                <div class="logo-text">
+                    <h1 class="logo-title" data-translate="company_name">القناة للسكر</h1>
+                    <p class="logo-subtitle">نظام حجز الوجبات المستقبلي</p>
+                </div>
+            </div>
+
+            <!-- 🌐 مبدل اللغة المستقبلي -->
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="ar">
+                    <span>🇸🇦</span>
+                    <span>عربي</span>
+                </button>
+                <button class="lang-btn" data-lang="en">
+                    <span>🇺🇸</span>
+                    <span>English</span>
+                </button>
+            </div>
         </div>
     </header>
     <main>
-        <section class="login-section">
-            <button class="login-btn">تسجيل الدخول</button>
+        <!-- صفحة تسجيل الدخول -->
+        <section id="login-section" class="login-section-page">
+            <div class="login-container">
+                <div class="login-logo-section">
+                    <div class="login-logo">
+                        <img src="canal-sugar-logo.png" alt="شعار القناة للسكر" class="login-page-logo" onerror="this.style.display='none'; document.querySelector('.text-logo').style.display='block';">
+                        <div class="text-logo" style="display: none;">
+                            <div class="logo-circle">CS</div>
+                        </div>
+                    </div>
+                    <div class="company-name-login">
+                        <h2>القناة للسكر</h2>
+                        <p class="company-name-en-login">CANAL SUGAR</p>
+                    </div>
+                </div>
+                <div class="login-header">
+                    <h3 data-translate="welcome_message">مرحباً بك في نظام حجز الوجبات</h3>
+                    <p class="login-subtitle" data-translate="login_subtitle">يرجى تسجيل الدخول للمتابعة</p>
+                </div>
+
+                <form id="main-login-form" class="login-form" onsubmit="handleMainLogin(event)">
+                    <div class="form-group">
+                        <label for="main-username" data-translate="username_label">اسم المستخدم أو البريد الإلكتروني:</label>
+                        <input type="text" id="main-username" name="username" required data-translate-placeholder="username_placeholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="main-password" data-translate="password_label">كلمة المرور:</label>
+                        <input type="password" id="main-password" name="password" required data-translate-placeholder="password_placeholder">
+                    </div>
+                    <button type="submit" class="main-login-btn" data-translate="login_button">دخول</button>
+                    <div class="form-links">
+                        <a href="#" onclick="showForgotPassword()" data-translate="forgot_password">نسيت كلمة المرور؟</a>
+                        <span> | </span>
+                        <a href="#" onclick="showRegisterForm()" data-translate="create_account">إنشاء حساب جديد</a>
+                    </div>
+                    <div class="quick-access">
+                        <button type="button" class="quick-btn" onclick="createAdminQuick()">إنشاء حساب المشرف السريع</button>
+                        <small>للاختبار: admin / canal2025</small>
+                    </div>
+                </form>
+
+                <!-- نموذج التسجيل -->
+                <form id="register-form" class="login-form hidden" onsubmit="handleRegister(event)">
+                    <h3>إنشاء حساب جديد</h3>
+                    <div class="form-group">
+                        <label for="reg-username">اسم المستخدم:</label>
+                        <input type="text" id="reg-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">البريد الإلكتروني:</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-fullname">الاسم الكامل:</label>
+                        <input type="text" id="reg-fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">كلمة المرور:</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-employee-id">رقم الموظف (اختياري):</label>
+                        <input type="text" id="reg-employee-id">
+                    </div>
+                    <button type="submit" class="main-login-btn">إنشاء الحساب</button>
+                    <div class="form-links">
+                        <a href="#" onclick="showLoginForm()">العودة لتسجيل الدخول</a>
+                    </div>
+                </form>
+            </div>
         </section>
-        <section class="meal-section">
-            <h2>اختر نوع الوجبة</h2>
-            <select id="meal-type">
-                <option value="breakfast">فطور صباحي</option>
-                <option value="lunch">غداء</option>
-                <option value="dinner">عشاء</option>
-                <option value="suhour">سحور</option>
+
+        <!-- الصفحة الرئيسية (تظهر بعد تسجيل الدخول) -->
+        <section id="home-section" class="home-section hidden">
+            <div class="welcome-container">
+                <div class="user-welcome">
+                    <h2 id="welcome-message">مرحباً بك في نظام حجز الوجبات</h2>
+                    <div class="user-actions">
+                        <span id="user-name-display"></span>
+                        <button class="admin-access-btn" onclick="showSection('admin-section')" title="لوحة تحكم المشرف">🔧</button>
+                        <button class="logout-btn-header" onclick="logout()">تسجيل الخروج</button>
+                    </div>
+                </div>
+
+                <div class="main-menu">
+                    <div class="menu-card" onclick="showSection('meal-section')">
+                        <div class="menu-icon">🍽️</div>
+                        <h3 data-translate="book_meals">حجز الوجبات</h3>
+                        <p data-translate="book_meals_desc">احجز وجبتك اليومية</p>
+                    </div>
+
+                    <div class="menu-card" onclick="showSection('reservations-section')">
+                        <div class="menu-icon">📋</div>
+                        <h3 data-translate="my_reservations">حجوزاتي</h3>
+                        <p data-translate="my_reservations_desc">عرض وإدارة حجوزاتك</p>
+                    </div>
+
+                    <div class="menu-card" onclick="showSection('profile-section')">
+                        <div class="menu-icon">👤</div>
+                        <h3 data-translate="profile">الملف الشخصي</h3>
+                        <p data-translate="profile_desc">إدارة بياناتك الشخصية</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- صفحة حجز الوجبات -->
+        <section id="meal-section" class="meal-section hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')" data-translate="back_to_home">← العودة للرئيسية</button>
+                <h2 data-translate="select_meal_type">اختر نوع الوجبة</h2>
+            </div>
+
+            <!-- مؤشر الوقت الحالي والوجبة النشطة -->
+            <div class="time-indicator">
+                <div class="current-time">
+                    <span data-translate="current_time">الوقت الحالي:</span>
+                    <span id="current-time-display">00:00</span>
+                </div>
+                <div class="active-meal-status" id="active-meal-status">
+                    <span class="status-text" id="meal-status-text">لا توجد وجبة متاحة حالياً</span>
+                </div>
+            </div>
+
+            <!-- مؤقت الوجبة -->
+            <div class="meal-timer" id="meal-timer" style="display: none;">
+                <div class="timer-header">
+                    <span id="timer-title">وقت متبقي للوجبة</span>
+                </div>
+                <div class="timer-display">
+                    <div class="timer-unit">
+                        <span id="hours">00</span>
+                        <label data-translate="hours">ساعة</label>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-unit">
+                        <span id="minutes">00</span>
+                        <label data-translate="minutes">دقيقة</label>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-unit">
+                        <span id="seconds">00</span>
+                        <label data-translate="seconds">ثانية</label>
+                    </div>
+                </div>
+            </div>
+
+            <select id="meal-type" onchange="handleMealChange()">
+                <option value="breakfast" data-translate="breakfast">فطور صباحي</option>
+                <option value="lunch" data-translate="lunch">غداء</option>
+                <option value="dinner" data-translate="dinner">عشاء</option>
+                <option value="suhour" data-translate="suhour">سحور</option>
             </select>
+
             <div class="meal-details">
-                <img src="meal.jpg" alt="Meal Image" id="meal-img">
+                <img src="images/breakfast.svg" alt="Meal Image" id="meal-img">
                 <h3 id="meal-name">اسم الوجبة</h3>
                 <p id="meal-desc">وصف الوجبة يظهر هنا...</p>
+                <div class="meal-time-info" id="meal-time-info">
+                    <span class="time-label" data-translate="available_time">متاح من:</span>
+                    <span id="meal-time-range">00:00 - 00:00</span>
+                </div>
                 <div id="meal-options" class="meal-options">
                   <!-- خيارات الوجبة تظهر هنا -->
                 </div>
             </div>
-            <button class="reserve-btn">احجز الآن</button>
+            <button class="reserve-btn" id="reserve-btn" data-translate="book_now" onclick="handleReservation()">احجز الآن</button>
+
+            <!-- أزرار التحكم والاختبار -->
+            <div class="test-controls" style="margin-top: 20px; text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+                <h4 style="margin: 0 0 10px 0; color: #495057; font-size: 14px;">🛠️ أدوات التحكم والاختبار</h4>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+                    <button onclick="forceRefreshMealsSection()" style="background: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;">🔄 إعادة تحميل كاملة</button>
+                    <button onclick="initializeMealsSection()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;">🔧 إعادة تهيئة</button>
+                    <button onclick="testTimer()" style="background: #6f42c1; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;">🧪 اختبار المؤقت</button>
+                    <button onclick="forceShowTimer()" style="background: #fd7e14; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;">⏰ إظهار المؤقت</button>
+                    <button onclick="debugMealsSection()" style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;">🐛 تشخيص المشاكل</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- صفحة الحجوزات -->
+        <section id="reservations-section" class="reservations-section hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')">← العودة للرئيسية</button>
+                <h2>حجوزاتي</h2>
+                <button class="refresh-btn" onclick="loadUserReservations()">🔄 تحديث</button>
+            </div>
+            <div class="reservations-list" id="reservations-list">
+                <p class="no-reservations">جاري تحميل الحجوزات...</p>
+            </div>
+        </section>
+
+        <!-- صفحة الملف الشخصي -->
+        <section id="profile-section" class="profile-section hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')">← العودة للرئيسية</button>
+                <h2>الملف الشخصي</h2>
+            </div>
+            <div class="profile-info">
+                <p>معلومات المستخدم ستظهر هنا بعد تسجيل الدخول</p>
+            </div>
+        </section>
+
+        <!-- صفحة المشرف -->
+        <section id="admin-section" class="admin-section hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')">← العودة للرئيسية</button>
+                <h2>🔧 لوحة تحكم المشرف</h2>
+            </div>
+
+            <!-- تسجيل دخول المشرف -->
+            <div id="admin-login-container" class="admin-login-container">
+                <div class="admin-login-card">
+                    <h3>🔐 تسجيل دخول المشرف</h3>
+                    <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
+                        <div class="form-group">
+                            <label for="admin-username">اسم المستخدم:</label>
+                            <input type="text" id="admin-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">كلمة المرور:</label>
+                            <input type="password" id="admin-password" required>
+                        </div>
+                        <button type="submit" class="admin-login-btn">دخول المشرف</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- لوحة تحكم المشرف -->
+            <div id="admin-dashboard" class="admin-dashboard hidden">
+                <div class="admin-welcome">
+                    <h3>مرحباً بك في لوحة التحكم</h3>
+                    <button class="admin-logout-btn" onclick="logoutAdmin()">تسجيل خروج المشرف</button>
+                </div>
+
+                <div class="admin-cards-grid">
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h4>📊 إحصائيات الحجوزات</h4>
+                        </div>
+                        <div class="admin-card-content">
+                            <table class="reservations-table">
+                                <thead>
+                                    <tr>
+                                        <th>الوجبة</th>
+                                        <th>عدد الحجوزات</th>
+                                        <th>الحالة</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="meals-status-table">
+                                    <tr>
+                                        <td>فطور صباحي</td>
+                                        <td><span class="count-badge">0</span></td>
+                                        <td><span class="status-active" id="breakfast-status">نشط</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>غداء</td>
+                                        <td><span class="count-badge">0</span></td>
+                                        <td><span class="status-active" id="lunch-status">نشط</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>عشاء</td>
+                                        <td><span class="count-badge">0</span></td>
+                                        <td><span class="status-active" id="dinner-status">نشط</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>سحور</td>
+                                        <td><span class="count-badge">0</span></td>
+                                        <td><span class="status-active" id="suhour-status">نشط</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h4>🖼️ إدارة الوجبات</h4>
+                        </div>
+                        <div class="admin-card-content">
+                            <div class="meals-management-grid">
+                                <div class="meal-management-item">
+                                    <img src="images/breakfast.svg" alt="فطور صباحي" class="admin-meal-img" id="admin-breakfast-img">
+                                    <h5>فطور صباحي</h5>
+                                    <p class="meal-time">6:00 - 9:00</p>
+                                    <div class="admin-meal-actions">
+                                        <button class="edit-meal-btn" onclick="editMeal('breakfast')">✏️ تحرير</button>
+                                        <button class="change-image-btn" onclick="changeMealImage('breakfast')">🖼️ تغيير الصورة</button>
+                                    </div>
+                                </div>
+                                <div class="meal-management-item">
+                                    <img src="images/lunch.svg" alt="غداء" class="admin-meal-img" id="admin-lunch-img">
+                                    <h5>غداء</h5>
+                                    <p class="meal-time">12:00 - 13:00</p>
+                                    <div class="admin-meal-actions">
+                                        <button class="edit-meal-btn" onclick="editMeal('lunch')">✏️ تحرير</button>
+                                        <button class="change-image-btn" onclick="changeMealImage('lunch')">🖼️ تغيير الصورة</button>
+                                    </div>
+                                </div>
+                                <div class="meal-management-item">
+                                    <img src="images/dinner.svg" alt="عشاء" class="admin-meal-img" id="admin-dinner-img">
+                                    <h5>عشاء</h5>
+                                    <p class="meal-time">18:00 - 20:00</p>
+                                    <div class="admin-meal-actions">
+                                        <button class="edit-meal-btn" onclick="editMeal('dinner')">✏️ تحرير</button>
+                                        <button class="change-image-btn" onclick="changeMealImage('dinner')">🖼️ تغيير الصورة</button>
+                                    </div>
+                                </div>
+                                <div class="meal-management-item">
+                                    <img src="images/suhour.svg" alt="سحور" class="admin-meal-img" id="admin-suhour-img">
+                                    <h5>سحور</h5>
+                                    <p class="meal-time">3:00 - 5:00</p>
+                                    <div class="admin-meal-actions">
+                                        <button class="edit-meal-btn" onclick="editMeal('suhour')">✏️ تحرير</button>
+                                        <button class="change-image-btn" onclick="changeMealImage('suhour')">🖼️ تغيير الصورة</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h4>⚙️ إعدادات النظام</h4>
+                        </div>
+                        <div class="admin-card-content">
+                            <div class="admin-controls">
+                                <div class="control-group">
+                                    <label>تفعيل/تعطيل الوجبات:</label>
+                                    <select id="meal-toggle-select" onchange="updateMealToggleUI()">
+                                        <option value="breakfast">فطور صباحي</option>
+                                        <option value="lunch">غداء</option>
+                                        <option value="dinner">عشاء</option>
+                                        <option value="suhour">سحور</option>
+                                    </select>
+                                    <button class="toggle-meal-btn" onclick="toggleMeal()">تبديل الحالة</button>
+                                </div>
+                                <div class="control-group">
+                                    <button class="export-btn" onclick="exportData()">📥 تصدير البيانات</button>
+                                    <button class="reset-btn" onclick="resetMealsData()">🔄 إعادة تعيين الوجبات</button>
+                                    <button class="reset-btn" onclick="resetSystem()">🗑️ إعادة تعيين النظام</button>
+                                </div>
+                                <div class="control-group">
+                                    <label>اختبار النظام:</label>
+                                    <button class="test-btn" onclick="enableTestMode()">🧪 تفعيل وضع الاختبار</button>
+                                    <button class="test-btn" onclick="disableTestMode()">⏹️ إيقاف وضع الاختبار</button>
+                                    <button class="test-btn" onclick="setTestTime('breakfast')">🌅 اختبار الفطور</button>
+                                    <button class="test-btn" onclick="setTestTime('lunch')">🍽️ اختبار الغداء</button>
+                                    <button class="test-btn" onclick="setTestTime('dinner')">🌙 اختبار العشاء</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+
+
+
+    <!-- نافذة تحرير الوجبة -->
+    <div id="edit-meal-modal" class="modal hidden">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3 id="edit-meal-title">تحرير الوجبة</h3>
+                <button class="close-btn" onclick="closeEditMealModal()">&times;</button>
+            </div>
+            <form id="edit-meal-form" onsubmit="saveMealChanges(event)">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>الاسم بالعربية:</label>
+                            <input type="text" id="meal-name-ar" required>
+                        </div>
+                        <div class="form-group">
+                            <label>الاسم بالإنجليزية:</label>
+                            <input type="text" id="meal-name-en" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>الوصف بالعربية:</label>
+                        <textarea id="meal-desc-ar" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>الوصف بالإنجليزية:</label>
+                        <textarea id="meal-desc-en" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>وقت البداية:</label>
+                            <input type="time" id="meal-start-time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>وقت النهاية:</label>
+                            <input type="time" id="meal-end-time" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>خيارات الوجبة (العربية) - مفصولة بفاصلة:</label>
+                        <input type="text" id="meal-options-ar" placeholder="ساخن, بديل, صحي">
+                    </div>
+
+                    <div class="form-group">
+                        <label>خيارات الوجبة (الإنجليزية) - مفصولة بفاصلة:</label>
+                        <input type="text" id="meal-options-en" placeholder="Hot, Alternative, Healthy">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn" onclick="closeEditMealModal()">إلغاء</button>
+                    <button type="submit" class="save-btn">حفظ التغييرات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة تغيير الصورة -->
+    <div id="change-image-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="change-image-title">تغيير صورة الوجبة</h3>
+                <button class="close-btn" onclick="closeChangeImageModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="image-upload-area">
+                    <input type="file" id="meal-image-input" accept="image/*" onchange="previewImage(event)">
+                    <div class="upload-placeholder" onclick="document.getElementById('meal-image-input').click()">
+                        <div class="upload-icon">📁</div>
+                        <p>انقر لاختيار صورة جديدة</p>
+                        <small>PNG, JPG, SVG (أقل من 2MB)</small>
+                    </div>
+                    <div class="image-preview" id="image-preview" style="display: none;">
+                        <img id="preview-img" src="" alt="معاينة">
+                        <button type="button" class="remove-preview" onclick="removePreview()">×</button>
+                    </div>
+                </div>
+
+                <div class="predefined-images">
+                    <h4>أو اختر من الصور المتاحة:</h4>
+                    <div class="predefined-grid">
+                        <div class="predefined-item" onclick="selectPredefinedImage('images/breakfast.svg')">
+                            <img src="images/breakfast.svg" alt="فطور">
+                            <span>فطور</span>
+                        </div>
+                        <div class="predefined-item" onclick="selectPredefinedImage('images/lunch.svg')">
+                            <img src="images/lunch.svg" alt="غداء">
+                            <span>غداء</span>
+                        </div>
+                        <div class="predefined-item" onclick="selectPredefinedImage('images/dinner.svg')">
+                            <img src="images/dinner.svg" alt="عشاء">
+                            <span>عشاء</span>
+                        </div>
+                        <div class="predefined-item" onclick="selectPredefinedImage('images/suhour.svg')">
+                            <img src="images/suhour.svg" alt="سحور">
+                            <span>سحور</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="cancel-btn" onclick="closeChangeImageModal()">إلغاء</button>
+                <button type="button" class="save-btn" onclick="saveImageChanges()">حفظ الصورة</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>جميع الحقوق محفوظة &copy; CANAL SUGAR 2025</p>
+        <p data-translate="copyright">جميع الحقوق محفوظة &copy; القناة للسكر 2025</p>
     </footer>
     <script>
-    // بيانات الوجبات مع الخيارات
-    const meals = {
-      breakfast: {
-        name: "فطور صباحي",
-        desc: "وجبة صباحية غنية بالطاقة، تشمل خيارات صحية وبديلة.",
-        img: "breakfast.jpg",
-        options: ["اختيار", "بديل", "صحي"]
+    // نظام الترجمة
+    let currentLanguage = 'ar';
+
+    const translations = {
+      ar: {
+        company_name: 'القناة للسكر',
+        welcome_message: 'مرحباً بك في نظام حجز الوجبات',
+        login_subtitle: 'يرجى تسجيل الدخول للمتابعة',
+        username_label: 'اسم المستخدم أو البريد الإلكتروني:',
+        password_label: 'كلمة المرور:',
+        username_placeholder: 'أدخل اسم المستخدم',
+        password_placeholder: 'أدخل كلمة المرور',
+        login_button: 'دخول',
+        forgot_password: 'نسيت كلمة المرور؟',
+        book_meals: 'حجز الوجبات',
+        book_meals_desc: 'احجز وجبتك اليومية',
+        my_reservations: 'حجوزاتي',
+        my_reservations_desc: 'عرض وإدارة حجوزاتك',
+        profile: 'الملف الشخصي',
+        profile_desc: 'إدارة بياناتك الشخصية',
+        logout: 'تسجيل الخروج',
+        back_to_home: 'العودة للرئيسية',
+        select_meal_type: 'اختر نوع الوجبة',
+        breakfast: 'فطور صباحي',
+        lunch: 'غداء',
+        dinner: 'عشاء',
+        suhour: 'سحور',
+        book_now: 'احجز الآن',
+        admin_panel: 'لوحة تحكم المشرف',
+        admin_login: 'تسجيل دخول المشرف',
+        admin_dashboard: 'لوحة التحكم',
+        reservations_stats: 'إحصائيات الحجوزات',
+        manage_images: 'إدارة صور الوجبات',
+        system_settings: 'إعدادات النظام',
+        copyright: 'جميع الحقوق محفوظة © القناة للسكر 2025',
+        current_time: 'الوقت الحالي:',
+        available_time: 'متاح من:',
+        hours: 'ساعة',
+        minutes: 'دقيقة',
+        seconds: 'ثانية',
+        time_remaining: 'وقت متبقي للوجبة',
+        time_until_start: 'وقت متبقي لبداية الوجبة',
+        meal_available: 'الوجبة متاحة الآن',
+        meal_ended: 'انتهت فترة الوجبة',
+        meal_not_available: 'لا توجد وجبة متاحة حالياً',
+        booking_disabled: 'الحجز غير متاح خارج أوقات الوجبة',
+        create_account: 'إنشاء حساب جديد',
+        time_remaining: 'الوقت المتبقي',
+        time_until_start: 'الوقت حتى الوجبة التالية'
       },
-      lunch: {
-        name: "غداء",
-        desc: "وجبة غداء ساخنة أو صحية أو بديلة حسب اختيارك.",
-        img: "lunch.jpg",
-        options: ["ساخن", "بديل", "صحي"]
-      },
-      dinner: {
-        name: "عشاء",
-        desc: "وجبة عشاء خفيفة أو صحية، مثالية لنهاية اليوم.",
-        img: "dinner.jpg",
-        options: ["خفيف", "صحي"]
-      },
-      suhour: {
-        name: "سحور",
-        desc: "وجبة سحور خفيفة وصحية، متاحة في أوقات محددة.",
-        img: "suhour.jpg",
-        options: ["خفيف", "صحي"]
+      en: {
+        company_name: 'Canal Sugar',
+        welcome_message: 'Welcome to Meal Booking System',
+        login_subtitle: 'Please login to continue',
+        username_label: 'Username or Email:',
+        password_label: 'Password:',
+        username_placeholder: 'Enter username',
+        password_placeholder: 'Enter password',
+        login_button: 'Login',
+        forgot_password: 'Forgot Password?',
+        book_meals: 'Book Meals',
+        book_meals_desc: 'Book your daily meal',
+        my_reservations: 'My Reservations',
+        my_reservations_desc: 'View and manage your bookings',
+        profile: 'Profile',
+        profile_desc: 'Manage your personal information',
+        logout: 'Logout',
+        back_to_home: 'Back to Home',
+        select_meal_type: 'Select Meal Type',
+        breakfast: 'Breakfast',
+        lunch: 'Lunch',
+        dinner: 'Dinner',
+        suhour: 'Suhour',
+        book_now: 'Book Now',
+        admin_panel: 'Admin Panel',
+        admin_login: 'Admin Login',
+        admin_dashboard: 'Dashboard',
+        reservations_stats: 'Reservations Statistics',
+        manage_images: 'Manage Meal Images',
+        system_settings: 'System Settings',
+        copyright: 'All Rights Reserved © Canal Sugar 2025',
+        current_time: 'Current Time:',
+        available_time: 'Available from:',
+        hours: 'Hours',
+        minutes: 'Minutes',
+        seconds: 'Seconds',
+        time_remaining: 'Time remaining for meal',
+        time_until_start: 'Time until meal starts',
+        meal_available: 'Meal is available now',
+        meal_ended: 'Meal time has ended',
+        meal_not_available: 'No meal available currently',
+        booking_disabled: 'Booking not available outside meal times',
+        create_account: 'Create New Account',
+        time_remaining: 'Time Remaining',
+        time_until_start: 'Time Until Next Meal'
       }
     };
+
+    function switchLanguage(lang) {
+      currentLanguage = lang;
+
+      // تحديث اتجاه الصفحة
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+
+      // تحديث أزرار اللغة
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        }
+      });
+
+      // تحديث النصوص
+      updateTexts();
+
+      // حفظ اللغة المختارة
+      localStorage.setItem('selectedLanguage', lang);
+    }
+
+    function updateTexts() {
+      const texts = translations[currentLanguage];
+
+      // تحديث النصوص العادية
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (texts[key]) {
+          element.textContent = texts[key];
+        }
+      });
+
+      // تحديث placeholders
+      document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-translate-placeholder');
+        if (texts[key]) {
+          element.placeholder = texts[key];
+        }
+      });
+
+      // تحديث خيارات الوجبات
+      updateMealOptions();
+
+      // تحديث تفاصيل الوجبة الحالية
+      if (mealType && mealType.value) {
+        updateMealDetails(mealType.value);
+      }
+    }
+
+    function updateMealOptions() {
+      const mealSelect = document.getElementById('meal-type');
+      if (mealSelect) {
+        const texts = translations[currentLanguage];
+        mealSelect.innerHTML = `
+          <option value="breakfast">${texts.breakfast}</option>
+          <option value="lunch">${texts.lunch}</option>
+          <option value="dinner">${texts.dinner}</option>
+          <option value="suhour">${texts.suhour}</option>
+        `;
+      }
+    }
+
+    // تحميل اللغة المحفوظة عند بدء التطبيق
+    function loadSavedLanguage() {
+      const savedLang = localStorage.getItem('selectedLanguage') || 'ar';
+      switchLanguage(savedLang);
+    }
+
+    // متغير لحالة تسجيل الدخول
+    let isLoggedIn = false;
+    let currentUser = null;
+
+    // وظائف التنقل بين الصفحات
+    function showSection(sectionId) {
+      // التحقق من تسجيل الدخول قبل الوصول للصفحات المحمية
+      if (!isLoggedIn && sectionId !== 'login-section') {
+        alert('يرجى تسجيل الدخول أولاً');
+        return;
+      }
+
+      // إخفاء جميع الأقسام
+      const sections = document.querySelectorAll('main section');
+      sections.forEach(section => {
+        section.classList.add('hidden');
+      });
+
+      // إظهار القسم المطلوب
+      document.getElementById(sectionId).classList.remove('hidden');
+    }
+
+    // تسجيل الدخول الرئيسي
+    async function handleMainLogin(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('main-username').value;
+      const password = document.getElementById('main-password').value;
+
+      if (!username || !password) {
+        alert('يرجى إدخال اسم المستخدم وكلمة المرور');
+        return;
+      }
+
+      try {
+        // تسجيل الدخول باستخدام قاعدة البيانات
+        const result = await canalAPI.login(username, password);
+
+        if (result.success) {
+          // تحديث حالة تسجيل الدخول
+          isLoggedIn = true;
+          currentUser = result.user.username;
+
+          // إظهار رسالة نجاح
+          alert(`مرحباً ${result.user.full_name}! تم تسجيل الدخول بنجاح`);
+
+          // تحديث واجهة المستخدم
+          updateUIAfterLogin(result.user.full_name);
+
+          // الانتقال للصفحة الرئيسية
+          showSection('home-section');
+        } else {
+          alert(result.error || 'فشل في تسجيل الدخول');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('حدث خطأ في تسجيل الدخول');
+      }
+    }
+
+    function updateUIAfterLogin(username) {
+      // تحديث رسالة الترحيب
+      document.getElementById('welcome-message').textContent = `مرحباً ${username}`;
+      document.getElementById('user-name-display').textContent = `مرحباً، ${username}`;
+
+      // تحديث صفحة الملف الشخصي
+      const profileInfo = document.querySelector('.profile-info');
+      profileInfo.innerHTML = `
+        <div class="user-info">
+          <h3>مرحباً، ${username}</h3>
+          <p>تم تسجيل الدخول بنجاح</p>
+          <p><strong>اسم المستخدم:</strong> ${username}</p>
+          <p><strong>حالة الحساب:</strong> نشط</p>
+          <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+        </div>
+      `;
+    }
+
+    async function logout() {
+      if (confirm('هل تريد تسجيل الخروج؟')) {
+        try {
+          // تسجيل الخروج من قاعدة البيانات
+          await canalAPI.logout();
+
+          // إعادة تعيين حالة تسجيل الدخول
+          isLoggedIn = false;
+          currentUser = null;
+
+          // مسح النماذج
+          document.getElementById('main-login-form').reset();
+
+          // إعادة تعيين صفحة الملف الشخصي
+          const profileInfo = document.querySelector('.profile-info');
+          profileInfo.innerHTML = '<p>معلومات المستخدم ستظهر هنا بعد تسجيل الدخول</p>';
+
+          // العودة لصفحة تسجيل الدخول
+          showSection('login-section');
+
+          alert('تم تسجيل الخروج بنجاح');
+        } catch (error) {
+          console.error('Logout error:', error);
+          alert('حدث خطأ في تسجيل الخروج');
+        }
+      }
+    }
+
+    function showForgotPassword() {
+      alert('سيتم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني');
+    }
+
+    // وظائف التسجيل
+    function showRegisterForm() {
+      document.getElementById('main-login-form').classList.add('hidden');
+      document.getElementById('register-form').classList.remove('hidden');
+    }
+
+    function showLoginForm() {
+      document.getElementById('register-form').classList.add('hidden');
+      document.getElementById('main-login-form').classList.remove('hidden');
+    }
+
+    async function handleRegister(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('reg-username').value;
+      const email = document.getElementById('reg-email').value;
+      const fullname = document.getElementById('reg-fullname').value;
+      const password = document.getElementById('reg-password').value;
+      const employeeId = document.getElementById('reg-employee-id').value;
+
+      if (!username || !email || !fullname || !password) {
+        alert('يرجى ملء جميع الحقول المطلوبة');
+        return;
+      }
+
+      try {
+        const result = await canalAPI.register({
+          username: username,
+          email: email,
+          full_name: fullname,
+          password: password,
+          employee_id: employeeId,
+          department: 'عام',
+          phone: ''
+        });
+
+        if (result.success) {
+          alert('تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول');
+          showLoginForm();
+          // ملء بيانات تسجيل الدخول
+          document.getElementById('main-username').value = username;
+        } else {
+          alert(result.error || 'فشل في إنشاء الحساب');
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        alert('حدث خطأ في إنشاء الحساب');
+      }
+    }
+
+    // إنشاء المستخدم الافتراضي إذا لم يكن موجوداً
+    async function createDefaultUsers() {
+      try {
+        // إنشاء المشرف الافتراضي
+        const adminResult = await canalAPI.register({
+          username: 'admin',
+          email: 'admin@canalsugar.com',
+          full_name: 'مدير النظام',
+          password: 'canal2025',
+          employee_id: 'ADMIN001',
+          department: 'الإدارة',
+          phone: ''
+        });
+
+        if (adminResult.success) {
+          console.log('تم إنشاء حساب المشرف الافتراضي');
+        }
+
+        // إنشاء مستخدم تجريبي
+        const userResult = await canalAPI.register({
+          username: 'user1',
+          email: 'user1@canalsugar.com',
+          full_name: 'محمد أحمد',
+          password: '123456',
+          employee_id: 'EMP001',
+          department: 'الموارد البشرية',
+          phone: '0501234567'
+        });
+
+        if (userResult.success) {
+          console.log('تم إنشاء المستخدم التجريبي');
+        }
+
+      } catch (error) {
+        console.log('المستخدمون الافتراضيون موجودون بالفعل أو حدث خطأ:', error);
+      }
+    }
+
+    // اختبار المؤقت مباشرة
+    function testTimer() {
+      console.log('Testing timer...');
+
+      // إظهار المؤقت مع 5 دقائق للاختبار
+      const timerElement = document.getElementById('meal-timer');
+      const timerTitle = document.getElementById('timer-title');
+
+      if (timerElement && timerTitle) {
+        timerElement.style.display = 'block';
+        timerTitle.textContent = 'اختبار المؤقت - 5 دقائق';
+
+        // بدء عد تنازلي لمدة 5 دقائق
+        startCountdownCustom(5);
+
+        alert('تم بدء اختبار المؤقت لمدة 5 دقائق');
+      } else {
+        alert('عناصر المؤقت غير موجودة');
+      }
+    }
+
+    // إجبار إظهار المؤقت للوجبة النشطة
+    function forceShowTimer() {
+      const activeMeal = getCurrentActiveMeal();
+      console.log('Force showing timer for:', activeMeal);
+
+      if (activeMeal) {
+        showTimer(activeMeal, 'remaining');
+      } else {
+        // إظهار مؤقت للوجبة التالية
+        const nextMeal = getNextMeal();
+        if (nextMeal.mealId) {
+          showTimer(nextMeal.mealId, 'until_start', nextMeal.minutesUntil);
+        } else {
+          alert('لا توجد وجبات متاحة');
+        }
+      }
+    }
+
+    // إنشاء حساب المشرف السريع
+    async function createAdminQuick() {
+      try {
+        const result = await canalAPI.register({
+          username: 'admin',
+          email: 'admin@canalsugar.com',
+          full_name: 'مدير النظام',
+          password: 'canal2025',
+          employee_id: 'ADMIN001',
+          department: 'الإدارة',
+          phone: ''
+        });
+
+        if (result.success) {
+          alert('تم إنشاء حساب المشرف بنجاح!\nاسم المستخدم: admin\nكلمة المرور: canal2025');
+          // ملء بيانات تسجيل الدخول
+          document.getElementById('main-username').value = 'admin';
+          document.getElementById('main-password').value = 'canal2025';
+        } else {
+          if (result.error.includes('موجود بالفعل')) {
+            alert('حساب المشرف موجود بالفعل!\nاسم المستخدم: admin\nكلمة المرور: canal2025');
+            // ملء بيانات تسجيل الدخول
+            document.getElementById('main-username').value = 'admin';
+            document.getElementById('main-password').value = 'canal2025';
+          } else {
+            alert(result.error);
+          }
+        }
+      } catch (error) {
+        console.error('Error creating admin:', error);
+        alert('حدث خطأ في إنشاء حساب المشرف');
+      }
+    }
+
+    // وظائف المشرف
+    let isAdminLoggedIn = false;
+    const ADMIN_CREDENTIALS = {
+      username: 'admin',
+      password: 'canal2025'
+    };
+
+    function handleAdminLogin(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('admin-username').value;
+      const password = document.getElementById('admin-password').value;
+
+      if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+        isAdminLoggedIn = true;
+        document.getElementById('admin-login-container').classList.add('hidden');
+        document.getElementById('admin-dashboard').classList.remove('hidden');
+
+        // تحديث واجهة المشرف
+        updateAdminMealsStatusTable();
+        updateMealToggleUI();
+
+        alert('مرحباً بك في لوحة تحكم المشرف!');
+      } else {
+        alert('اسم المستخدم أو كلمة المرور غير صحيحة!');
+      }
+    }
+
+    function logoutAdmin() {
+      if (confirm('هل تريد تسجيل الخروج من لوحة المشرف؟')) {
+        isAdminLoggedIn = false;
+        document.getElementById('admin-login-container').classList.remove('hidden');
+        document.getElementById('admin-dashboard').classList.add('hidden');
+        document.getElementById('admin-login-form').reset();
+        showSection('home-section');
+      }
+    }
+
+    // متغيرات تحرير الوجبات
+    let currentEditingMeal = null;
+    let currentEditingImage = null;
+    let selectedImagePath = null;
+
+    // وظائف تحرير الوجبات
+    function editMeal(mealType) {
+      currentEditingMeal = mealType;
+      const meal = meals[mealType];
+
+      // ملء النموذج بالبيانات الحالية
+      document.getElementById('meal-name-ar').value = meal.name.ar;
+      document.getElementById('meal-name-en').value = meal.name.en;
+      document.getElementById('meal-desc-ar').value = meal.desc.ar;
+      document.getElementById('meal-desc-en').value = meal.desc.en;
+      document.getElementById('meal-start-time').value = meal.startTime;
+      document.getElementById('meal-end-time').value = meal.endTime;
+      document.getElementById('meal-options-ar').value = meal.options.ar.join(', ');
+      document.getElementById('meal-options-en').value = meal.options.en.join(', ');
+
+      // إظهار النافذة
+      document.getElementById('edit-meal-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEditMealModal() {
+      document.getElementById('edit-meal-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      currentEditingMeal = null;
+    }
+
+    function saveMealChanges(event) {
+      event.preventDefault();
+
+      if (!currentEditingMeal) return;
+
+      // جمع البيانات من النموذج
+      const nameAr = document.getElementById('meal-name-ar').value;
+      const nameEn = document.getElementById('meal-name-en').value;
+      const descAr = document.getElementById('meal-desc-ar').value;
+      const descEn = document.getElementById('meal-desc-en').value;
+      const startTime = document.getElementById('meal-start-time').value;
+      const endTime = document.getElementById('meal-end-time').value;
+      const optionsAr = document.getElementById('meal-options-ar').value.split(',').map(s => s.trim()).filter(s => s);
+      const optionsEn = document.getElementById('meal-options-en').value.split(',').map(s => s.trim()).filter(s => s);
+
+      // تحديث بيانات الوجبة
+      meals[currentEditingMeal] = {
+        ...meals[currentEditingMeal],
+        name: { ar: nameAr, en: nameEn },
+        desc: { ar: descAr, en: descEn },
+        startTime: startTime,
+        endTime: endTime,
+        options: { ar: optionsAr, en: optionsEn }
+      };
+
+      // تحديث الواجهة
+      updateMealDetails(currentEditingMeal);
+      updateMealOptions();
+
+      // تحديث واجهة المشرف
+      updateAdminMealDisplay(currentEditingMeal);
+
+      // حفظ البيانات في localStorage
+      localStorage.setItem('mealsData', JSON.stringify(meals));
+
+      // إغلاق النافذة
+      closeEditMealModal();
+
+      alert('تم حفظ التغييرات بنجاح!');
+
+      console.log('Meal updated:', meals[currentEditingMeal]);
+    }
+
+    function changeMealImage(mealType) {
+      currentEditingImage = mealType;
+      selectedImagePath = null;
+
+      // إعادة تعيين النافذة
+      document.getElementById('image-preview').style.display = 'none';
+      document.getElementById('meal-image-input').value = '';
+
+      // إظهار النافذة
+      document.getElementById('change-image-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeChangeImageModal() {
+      document.getElementById('change-image-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      currentEditingImage = null;
+      selectedImagePath = null;
+    }
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // التحقق من نوع الملف
+      if (!file.type.startsWith('image/')) {
+        alert('يرجى اختيار ملف صورة صالح');
+        return;
+      }
+
+      // التحقق من حجم الملف (2MB)
+      if (file.size > 2 * 1024 * 1024) {
+        alert('حجم الملف كبير جداً. يرجى اختيار صورة أقل من 2MB');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('preview-img').src = e.target.result;
+        document.getElementById('image-preview').style.display = 'block';
+        selectedImagePath = e.target.result; // base64 data
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removePreview() {
+      document.getElementById('image-preview').style.display = 'none';
+      document.getElementById('meal-image-input').value = '';
+      selectedImagePath = null;
+    }
+
+    function selectPredefinedImage(imagePath) {
+      selectedImagePath = imagePath;
+      document.getElementById('preview-img').src = imagePath;
+      document.getElementById('image-preview').style.display = 'block';
+      document.getElementById('meal-image-input').value = '';
+    }
+
+    function saveImageChanges() {
+      if (!currentEditingImage || !selectedImagePath) {
+        alert('يرجى اختيار صورة أولاً');
+        return;
+      }
+
+      // تحديث مسار الصورة في بيانات الوجبة
+      meals[currentEditingImage].img = selectedImagePath;
+
+      // تحديث الصورة في واجهة المشرف
+      const adminImg = document.getElementById(`admin-${currentEditingImage}-img`);
+      if (adminImg) {
+        adminImg.src = selectedImagePath;
+      }
+
+      // تحديث الصورة في صفحة الوجبات إذا كانت مفتوحة
+      if (mealType && mealType.value === currentEditingImage) {
+        updateMealDetails(currentEditingImage);
+      }
+
+      // إغلاق النافذة
+      closeChangeImageModal();
+
+      alert('تم تغيير الصورة بنجاح!');
+
+      console.log('Image updated for meal:', currentEditingImage, selectedImagePath);
+    }
+
+    // تحديث واجهة المشرف
+    function updateAdminMealDisplay(mealType) {
+      const meal = meals[mealType];
+      const mealItem = document.querySelector(`#admin-${mealType}-img`).closest('.meal-management-item');
+
+      if (mealItem) {
+        const nameElement = mealItem.querySelector('h5');
+        const timeElement = mealItem.querySelector('.meal-time');
+
+        if (nameElement) nameElement.textContent = meal.name.ar;
+        if (timeElement) timeElement.textContent = `${meal.startTime} - ${meal.endTime}`;
+      }
+    }
+
+    // تحميل البيانات المحفوظة
+    function loadSavedMealsData() {
+      const savedData = localStorage.getItem('mealsData');
+      if (savedData) {
+        try {
+          const parsedData = JSON.parse(savedData);
+          // دمج البيانات المحفوظة مع البيانات الافتراضية
+          Object.keys(meals).forEach(mealType => {
+            if (parsedData[mealType]) {
+              meals[mealType] = { ...meals[mealType], ...parsedData[mealType] };
+            }
+          });
+          console.log('Loaded saved meals data');
+        } catch (error) {
+          console.error('Error loading saved meals data:', error);
+        }
+      }
+    }
+
+    // إعادة تعيين البيانات للافتراضية
+    function resetMealsData() {
+      if (confirm('هل أنت متأكد من إعادة تعيين جميع بيانات الوجبات للإعدادات الافتراضية؟')) {
+        localStorage.removeItem('mealsData');
+        location.reload(); // إعادة تحميل الصفحة
+      }
+    }
+
+    function getMealName(mealType) {
+      const names = {
+        breakfast: 'الفطور الصباحي',
+        lunch: 'الغداء',
+        dinner: 'العشاء',
+        suhour: 'السحور'
+      };
+      return names[mealType] || mealType;
+    }
+
+    // متغير لحفظ حالة الوجبات المعطلة
+    let disabledMeals = new Set();
+
+    function toggleMeal() {
+      const selectedMeal = document.getElementById('meal-toggle-select').value;
+      const mealName = getMealName(selectedMeal);
+
+      if (disabledMeals.has(selectedMeal)) {
+        // تفعيل الوجبة
+        disabledMeals.delete(selectedMeal);
+        alert(`تم تفعيل ${mealName}`);
+      } else {
+        // تعطيل الوجبة
+        disabledMeals.add(selectedMeal);
+        alert(`تم تعطيل ${mealName}`);
+      }
+
+      // حفظ الحالة
+      localStorage.setItem('disabledMeals', JSON.stringify([...disabledMeals]));
+
+      // تحديث الواجهة
+      updateMealStatus();
+      updateMealToggleUI();
+      updateAdminMealsStatusTable();
+    }
+
+    function updateMealToggleUI() {
+      const selectedMeal = document.getElementById('meal-toggle-select').value;
+      const toggleBtn = document.querySelector('.toggle-meal-btn');
+
+      if (toggleBtn) {
+        if (disabledMeals.has(selectedMeal)) {
+          toggleBtn.textContent = 'تفعيل الوجبة';
+          toggleBtn.style.background = '#48bb78';
+        } else {
+          toggleBtn.textContent = 'تعطيل الوجبة';
+          toggleBtn.style.background = '#e53e3e';
+        }
+      }
+    }
+
+    function loadDisabledMeals() {
+      const saved = localStorage.getItem('disabledMeals');
+      if (saved) {
+        try {
+          disabledMeals = new Set(JSON.parse(saved));
+        } catch (error) {
+          console.error('Error loading disabled meals:', error);
+        }
+      }
+    }
+
+    function updateAdminMealsStatusTable() {
+      const mealTypes = ['breakfast', 'lunch', 'dinner', 'suhour'];
+
+      mealTypes.forEach(mealType => {
+        const statusElement = document.getElementById(`${mealType}-status`);
+        if (statusElement) {
+          if (disabledMeals.has(mealType)) {
+            statusElement.textContent = 'معطل';
+            statusElement.className = 'status-inactive';
+          } else {
+            statusElement.textContent = 'نشط';
+            statusElement.className = 'status-active';
+          }
+        }
+      });
+    }
+
+    async function exportData() {
+      try {
+        if (!canalAPI.isAdmin()) {
+          alert('غير مصرح لك بهذه العملية');
+          return;
+        }
+
+        const result = await canalAPI.exportData('json');
+        if (result.success) {
+          // إنشاء وتحميل الملف
+          const blob = new Blob([JSON.stringify(result.data, null, 2)],
+                               { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = result.filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          alert('تم تصدير البيانات بنجاح');
+        } else {
+          alert(result.error || 'فشل في تصدير البيانات');
+        }
+      } catch (error) {
+        console.error('Export error:', error);
+        alert('حدث خطأ في تصدير البيانات');
+      }
+    }
+
+    function resetSystem() {
+      if (confirm('هل أنت متأكد من إعادة تعيين النظام؟ سيتم حذف جميع البيانات!')) {
+        alert('تم إعادة تعيين النظام بنجاح');
+        // هنا يمكن إضافة منطق إعادة التعيين
+      }
+    }
+
+    // متغير لتفعيل وضع الاختبار
+    let testMode = false;
+    let testTime = null;
+
+    // دالة لتفعيل وضع الاختبار (للمشرف)
+    function enableTestMode() {
+      testMode = true;
+      const now = new Date();
+      // تعيين وقت اختبار (مثلاً الساعة 12:30 للغداء)
+      testTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 30, 0);
+      console.log('Test mode enabled. Test time set to:', testTime.toLocaleTimeString());
+      updateMealStatus();
+    }
+
+    function disableTestMode() {
+      testMode = false;
+      testTime = null;
+      console.log('Test mode disabled');
+      updateMealStatus();
+    }
+
+    function setTestTime(mealType) {
+      if (!testMode) {
+        enableTestMode();
+      }
+
+      const meal = meals[mealType];
+      const now = new Date();
+      const [hours, minutes] = meal.startTime.split(':').map(Number);
+
+      // تعيين الوقت لبداية الوجبة + 5 دقائق
+      testTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes + 5, 0);
+
+      console.log(`Test time set for ${mealType}:`, testTime.toLocaleTimeString());
+      updateMealStatus();
+    }
+
+    // تعديل دالة getCurrentTime لدعم وضع الاختبار
+    function getCurrentTime() {
+      return testMode && testTime ? testTime : new Date();
+    }
+
+    // بدء نظام التوقيت
+    function startTimeSystem() {
+      // تحديث الوقت كل ثانية
+      timeUpdateInterval = setInterval(() => {
+        updateCurrentTimeDisplay();
+        updateMealStatus();
+
+        // في وضع الاختبار، تقدم الوقت بدقيقة واحدة كل ثانية
+        if (testMode && testTime) {
+          testTime.setMinutes(testTime.getMinutes() + 1);
+        }
+      }, 1000);
+
+      // تحديث فوري
+      updateCurrentTimeDisplay();
+      updateMealStatus();
+    }
+
+    // إيقاف نظام التوقيت
+    function stopTimeSystem() {
+      if (timeUpdateInterval) {
+        clearInterval(timeUpdateInterval);
+      }
+      if (timerInterval) {
+        clearInterval(timerInterval);
+      }
+    }
+
+    // تهيئة التطبيق
+    async function initializeApp() {
+      try {
+        // تهيئة قاعدة البيانات
+        const dbSuccess = await canalAPI.init();
+        if (dbSuccess) {
+          console.log('تم تهيئة قاعدة البيانات بنجاح');
+
+          // إنشاء المستخدمين الافتراضيين
+          await createDefaultUsers();
+
+          // تحميل الوجبات من قاعدة البيانات
+          await loadMealsFromDatabase();
+        } else {
+          console.warn('فشل في تهيئة قاعدة البيانات، سيتم استخدام البيانات المحلية');
+        }
+
+        loadSavedMealsData(); // تحميل بيانات الوجبات المحفوظة
+        loadDisabledMeals(); // تحميل الوجبات المعطلة
+        loadSavedLanguage(); // تحميل اللغة المحفوظة
+        showSection('login-section');
+        startTimeSystem(); // بدء نظام التوقيت
+
+        console.log('تم تهيئة التطبيق بنجاح');
+      } catch (error) {
+        console.error('خطأ في تهيئة التطبيق:', error);
+        // المتابعة بالبيانات المحلية
+        loadSavedMealsData();
+        loadDisabledMeals();
+        loadSavedLanguage();
+        showSection('login-section');
+        startTimeSystem();
+      }
+    }
+
+    // تحميل الوجبات من قاعدة البيانات
+    async function loadMealsFromDatabase() {
+      try {
+        const result = await canalAPI.getAvailableMeals();
+        if (result.success && result.meals.length > 0) {
+          // تحديث بيانات الوجبات من قاعدة البيانات
+          result.meals.forEach(dbMeal => {
+            if (meals[dbMeal.meal_type]) {
+              meals[dbMeal.meal_type] = {
+                ...meals[dbMeal.meal_type],
+                name: {
+                  ar: dbMeal.name_ar,
+                  en: dbMeal.name_en
+                },
+                desc: {
+                  ar: dbMeal.description_ar,
+                  en: dbMeal.description_en
+                },
+                img: dbMeal.image_path,
+                startTime: dbMeal.start_time,
+                endTime: dbMeal.end_time
+              };
+            }
+          });
+          console.log('تم تحميل الوجبات من قاعدة البيانات');
+        }
+      } catch (error) {
+        console.error('خطأ في تحميل الوجبات من قاعدة البيانات:', error);
+      }
+    }
+
+    // تحميل حجوزات المستخدم
+    async function loadUserReservations() {
+      try {
+        if (!canalAPI.isLoggedIn()) {
+          document.getElementById('reservations-list').innerHTML =
+            '<p class="no-reservations">يجب تسجيل الدخول لعرض الحجوزات</p>';
+          return;
+        }
+
+        const result = await canalAPI.getUserReservations();
+        const reservationsList = document.getElementById('reservations-list');
+
+        if (result.success) {
+          if (result.reservations.length === 0) {
+            reservationsList.innerHTML = '<p class="no-reservations">لا توجد حجوزات حالياً</p>';
+          } else {
+            let html = '<div class="reservations-grid">';
+
+            for (const reservation of result.reservations) {
+              const reservationDate = new Date(reservation.reservation_date).toLocaleDateString('ar-SA');
+              const reservationTime = new Date(reservation.reservation_time).toLocaleTimeString('ar-SA', {
+                hour: '2-digit',
+                minute: '2-digit'
+              });
+
+              html += `
+                <div class="reservation-card">
+                  <div class="reservation-header">
+                    <h4>حجز رقم: ${reservation.id}</h4>
+                    <span class="reservation-status status-${reservation.status}">${reservation.status}</span>
+                  </div>
+                  <div class="reservation-details">
+                    <p><strong>التاريخ:</strong> ${reservationDate}</p>
+                    <p><strong>الوقت:</strong> ${reservationTime}</p>
+                    <p><strong>معرف الوجبة:</strong> ${reservation.meal_id}</p>
+                    ${reservation.notes ? `<p><strong>ملاحظات:</strong> ${reservation.notes}</p>` : ''}
+                  </div>
+                  <div class="reservation-actions">
+                    ${reservation.status === 'confirmed' ?
+                      `<button class="cancel-reservation-btn" onclick="cancelReservation(${reservation.id})">إلغاء الحجز</button>` :
+                      ''
+                    }
+                  </div>
+                </div>
+              `;
+            }
+
+            html += '</div>';
+            reservationsList.innerHTML = html;
+          }
+        } else {
+          reservationsList.innerHTML = `<p class="error-message">خطأ: ${result.error}</p>`;
+        }
+      } catch (error) {
+        console.error('Error loading reservations:', error);
+        document.getElementById('reservations-list').innerHTML =
+          '<p class="error-message">حدث خطأ في تحميل الحجوزات</p>';
+      }
+    }
+
+    // إلغاء حجز
+    async function cancelReservation(reservationId) {
+      if (confirm('هل أنت متأكد من إلغاء هذا الحجز؟')) {
+        try {
+          const result = await canalAPI.cancelReservation(reservationId);
+          if (result.success) {
+            alert('تم إلغاء الحجز بنجاح');
+            loadUserReservations(); // إعادة تحميل القائمة
+          } else {
+            alert(result.error || 'فشل في إلغاء الحجز');
+          }
+        } catch (error) {
+          console.error('Cancel reservation error:', error);
+          alert('حدث خطأ في إلغاء الحجز');
+        }
+      }
+    }
+
+    // تحميل الحجوزات عند فتح الصفحة
+    function showSection(sectionId) {
+      console.log('📄 فتح القسم:', sectionId);
+
+      // التحقق من تسجيل الدخول قبل الوصول للصفحات المحمية
+      if (!isLoggedIn && sectionId !== 'login-section') {
+        alert('يرجى تسجيل الدخول أولاً');
+        return;
+      }
+
+      // إخفاء جميع الأقسام
+      const sections = document.querySelectorAll('main section');
+      sections.forEach(section => {
+        section.classList.add('hidden');
+      });
+
+      // إظهار القسم المطلوب
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.remove('hidden');
+        console.log('✅ تم إظهار القسم:', sectionId);
+      } else {
+        console.error('❌ القسم غير موجود:', sectionId);
+        return;
+      }
+
+      // تحميل البيانات حسب القسم
+      if (sectionId === 'reservations-section') {
+        console.log('📋 تحميل الحجوزات...');
+        loadUserReservations();
+      } else if (sectionId === 'meals-section') {
+        console.log('🍽️ تهيئة صفحة الوجبات...');
+        // تأخير قصير للتأكد من ظهور العناصر
+        setTimeout(() => {
+          initializeMealsSection();
+        }, 100);
+      }
+    }
+
+    // تهيئة صفحة الوجبات
+    function initializeMealsSection() {
+      console.log('🚀 بدء تهيئة صفحة الوجبات...');
+
+      try {
+        // التأكد من وجود عنصر نوع الوجبة
+        const mealTypeSelect = document.getElementById('meal-type');
+        if (!mealTypeSelect) {
+          console.error('❌ عنصر اختيار نوع الوجبة غير موجود');
+          return;
+        }
+
+        // التحقق من وجود بيانات الوجبات
+        if (!meals || Object.keys(meals).length === 0) {
+          console.error('❌ بيانات الوجبات غير موجودة');
+          return;
+        }
+
+        // تحديث تفاصيل الوجبة الافتراضية
+        const defaultMeal = mealTypeSelect.value || 'breakfast';
+        console.log('📋 تحميل الوجبة الافتراضية:', defaultMeal);
+
+        // التأكد من وجود الوجبة المختارة
+        if (!meals[defaultMeal]) {
+          console.warn('⚠️ الوجبة المختارة غير موجودة، استخدام الفطور');
+          mealTypeSelect.value = 'breakfast';
+        }
+
+        // تحديث تفاصيل الوجبة
+        updateMealDetails(mealTypeSelect.value);
+
+        // تحديث حالة الوجبة والمؤقت
+        updateMealStatus();
+
+        // إضافة مستمع لتغيير نوع الوجبة
+        mealTypeSelect.onchange = function() {
+          console.log('🔄 تغيير نوع الوجبة إلى:', this.value);
+          updateMealDetails(this.value);
+        };
+
+        console.log('✅ تم تهيئة صفحة الوجبات بنجاح');
+
+      } catch (error) {
+        console.error('❌ خطأ في تهيئة صفحة الوجبات:', error);
+      }
+    }
+
+    // إجبار تحديث صفحة الوجبات
+    function forceRefreshMealsSection() {
+      console.log('🔄 إجبار تحديث صفحة الوجبات...');
+
+      // إعادة تعيين المحتوى
+      const mealName = document.getElementById('meal-name');
+      const mealDesc = document.getElementById('meal-desc');
+      const mealImg = document.getElementById('meal-img');
+      const mealOptions = document.getElementById('meal-options');
+
+      if (mealName) mealName.textContent = 'جاري التحميل...';
+      if (mealDesc) mealDesc.textContent = 'جاري تحميل تفاصيل الوجبة...';
+      if (mealOptions) mealOptions.innerHTML = '<p>جاري التحميل...</p>';
+
+      // تأخير قصير ثم إعادة التهيئة
+      setTimeout(() => {
+        initializeMealsSection();
+      }, 100);
+    }
+
+    // تشخيص شامل لصفحة الوجبات
+    function debugMealsSection() {
+      console.log('🐛 بدء تشخيص صفحة الوجبات...');
+
+      const report = {
+        elements: {},
+        data: {},
+        status: {}
+      };
+
+      // فحص العناصر
+      const elements = [
+        'meal-name', 'meal-desc', 'meal-img', 'meal-options',
+        'meal-time-range', 'meal-type', 'meal-timer', 'reserve-btn'
+      ];
+
+      elements.forEach(id => {
+        const element = document.getElementById(id);
+        report.elements[id] = {
+          exists: !!element,
+          visible: element ? !element.classList.contains('hidden') : false,
+          content: element ? (element.textContent || element.value || element.src || 'empty') : null
+        };
+      });
+
+      // فحص البيانات
+      report.data = {
+        mealsExists: !!meals,
+        mealsCount: meals ? Object.keys(meals).length : 0,
+        currentLanguage: currentLanguage,
+        isLoggedIn: isLoggedIn,
+        currentUser: currentUser
+      };
+
+      // فحص الحالة
+      report.status = {
+        activeMeal: getCurrentActiveMeal(),
+        testMode: testMode || false,
+        timerRunning: !!timerInterval
+      };
+
+      console.log('📊 تقرير التشخيص:', report);
+
+      // عرض التقرير في alert
+      let message = '🐛 تقرير تشخيص صفحة الوجبات:\n\n';
+
+      message += '📋 العناصر:\n';
+      Object.entries(report.elements).forEach(([id, info]) => {
+        const status = info.exists ? (info.visible ? '✅' : '⚠️') : '❌';
+        message += `${status} ${id}: ${info.exists ? 'موجود' : 'مفقود'}\n`;
+      });
+
+      message += '\n📊 البيانات:\n';
+      message += `الوجبات: ${report.data.mealsExists ? report.data.mealsCount + ' وجبة' : 'مفقودة'}\n`;
+      message += `اللغة: ${report.data.currentLanguage}\n`;
+      message += `تسجيل الدخول: ${report.data.isLoggedIn ? 'نعم' : 'لا'}\n`;
+
+      message += '\n⚡ الحالة:\n';
+      message += `الوجبة النشطة: ${report.status.activeMeal || 'لا توجد'}\n`;
+      message += `وضع الاختبار: ${report.status.testMode ? 'مفعل' : 'معطل'}\n`;
+      message += `المؤقت: ${report.status.timerRunning ? 'يعمل' : 'متوقف'}\n`;
+
+      alert(message);
+
+      return report;
+    }
+
+    // التأكد من بدء التطبيق بصفحة تسجيل الدخول
+    document.addEventListener('DOMContentLoaded', initializeApp);
+
+    // بيانات الوجبات مع التوقيتات والخيارات (متعددة اللغات)
+    const meals = {
+      breakfast: {
+        name: {
+          ar: "فطور صباحي",
+          en: "Breakfast"
+        },
+        desc: {
+          ar: "وجبة صباحية غنية بالطاقة، متاحة من الساعة 6:00 إلى 9:00 صباحاً.",
+          en: "Energy-rich morning meal, available from 6:00 AM to 9:00 AM."
+        },
+        img: "images/breakfast.svg",
+        startTime: "06:00",
+        endTime: "09:00",
+        options: {
+          ar: ["اختيار"],
+          en: ["Choice"]
+        }
+      },
+      lunch: {
+        name: {
+          ar: "غداء",
+          en: "Lunch"
+        },
+        desc: {
+          ar: "وجبة غداء ساخنة أو صحية أو بديلة، متاحة من الساعة 12:00 إلى 1:00 مساءً.",
+          en: "Hot, healthy, or alternative lunch meal, available from 12:00 PM to 1:00 PM."
+        },
+        img: "images/lunch.svg",
+        startTime: "12:00",
+        endTime: "13:00",
+        options: {
+          ar: ["ساخن", "بديل", "صحي"],
+          en: ["Hot", "Alternative", "Healthy"]
+        }
+      },
+      dinner: {
+        name: {
+          ar: "عشاء",
+          en: "Dinner"
+        },
+        desc: {
+          ar: "وجبة عشاء خفيفة أو صحية، متاحة من الساعة 6:00 إلى 8:00 مساءً.",
+          en: "Light or healthy dinner meal, available from 6:00 PM to 8:00 PM."
+        },
+        img: "images/dinner.svg",
+        startTime: "18:00",
+        endTime: "20:00",
+        options: {
+          ar: ["خفيف", "صحي"],
+          en: ["Light", "Healthy"]
+        }
+      },
+      suhour: {
+        name: {
+          ar: "سحور",
+          en: "Suhour"
+        },
+        desc: {
+          ar: "وجبة سحور خفيفة وصحية، متاحة من الساعة 3:00 إلى 5:00 فجراً.",
+          en: "Light and healthy suhour meal, available from 3:00 AM to 5:00 AM."
+        },
+        img: "images/suhour.svg",
+        startTime: "03:00",
+        endTime: "05:00",
+        options: {
+          ar: ["خفيف", "صحي"],
+          en: ["Light", "Healthy"]
+        }
+      }
+    };
+
+    // متغيرات نظام التوقيت
+    let currentActiveMeal = null;
+    let timerInterval = null;
+    let timeUpdateInterval = null;
 
     // عناصر الصفحة
     const mealType = document.getElementById('meal-type');
@@ -76,44 +1793,552 @@
     const mealDesc = document.getElementById('meal-desc');
     const mealOptions = document.getElementById('meal-options');
 
-    // دالة لتحديث تفاصيل الوجبة
-    function updateMealDetails(selected) {
-      mealName.textContent = meals[selected].name;
-      mealDesc.textContent = meals[selected].desc;
-      mealImg.src = meals[selected].img;
-      mealImg.alt = meals[selected].name;
-      // عرض الخيارات
-      mealOptions.innerHTML = '';
-      meals[selected].options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.textContent = opt;
-        btn.className = 'option-btn';
-        btn.onclick = function() {
-          document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-          btn.classList.add('selected');
-        };
-        mealOptions.appendChild(btn);
-      });
+    // وظائف نظام التوقيت
+    function getCurrentTime() {
+      return new Date();
     }
 
-    // تحديث عند تغيير نوع الوجبة
-    mealType.addEventListener('change', function() {
-      updateMealDetails(mealType.value);
-    });
+    function timeToMinutes(timeStr) {
+      const [hours, minutes] = timeStr.split(':').map(Number);
+      return hours * 60 + minutes;
+    }
 
-    // تحديث افتراضي عند تحميل الصفحة
-    updateMealDetails(mealType.value);
+    function minutesToTime(minutes) {
+      const hours = Math.floor(minutes / 60);
+      const mins = minutes % 60;
+      return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+    }
 
-    // رسالة عند الحجز
-    document.querySelector('.reserve-btn').addEventListener('click', function() {
-      const selectedOption = document.querySelector('.option-btn.selected');
-      let msg = 'تم حجز الوجبة بنجاح!';
-      if (selectedOption) {
-        msg += `\nنوع الوجبة: ${meals[mealType.value].name} - ${selectedOption.textContent}`;
-      } else {
-        msg += `\nنوع الوجبة: ${meals[mealType.value].name}`;
+    function getCurrentActiveMeal() {
+      const now = getCurrentTime();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+      console.log('Checking active meal at:', now.toLocaleTimeString(), 'Minutes:', currentMinutes);
+
+      for (const [mealId, meal] of Object.entries(meals)) {
+        // تخطي الوجبات المعطلة
+        if (disabledMeals.has(mealId)) {
+          console.log(`${mealId}: disabled, skipping`);
+          continue;
+        }
+
+        const startMinutes = timeToMinutes(meal.startTime);
+        const endMinutes = timeToMinutes(meal.endTime);
+
+        console.log(`${mealId}: ${meal.startTime} (${startMinutes}) - ${meal.endTime} (${endMinutes})`);
+
+        // معالجة الأوقات التي تمتد عبر منتصف الليل (مثل السحور)
+        if (startMinutes > endMinutes) {
+          // الوقت يمتد عبر منتصف الليل
+          if (currentMinutes >= startMinutes || currentMinutes <= endMinutes) {
+            console.log(`Active meal found: ${mealId} (crosses midnight)`);
+            return mealId;
+          }
+        } else {
+          // الوقت العادي في نفس اليوم
+          if (currentMinutes >= startMinutes && currentMinutes <= endMinutes) {
+            console.log(`Active meal found: ${mealId} (same day)`);
+            return mealId;
+          }
+        }
       }
-      alert(msg);
+
+      console.log('No active meal found');
+      return null;
+    }
+
+    function getNextMeal() {
+      const now = getCurrentTime();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      let nextMeal = null;
+      let minTimeDiff = Infinity;
+
+      for (const [mealId, meal] of Object.entries(meals)) {
+        const startMinutes = timeToMinutes(meal.startTime);
+        let timeDiff;
+
+        if (startMinutes > currentMinutes) {
+          timeDiff = startMinutes - currentMinutes;
+        } else {
+          timeDiff = (24 * 60) - currentMinutes + startMinutes;
+        }
+
+        if (timeDiff < minTimeDiff) {
+          minTimeDiff = timeDiff;
+          nextMeal = mealId;
+        }
+      }
+
+      return { mealId: nextMeal, minutesUntil: minTimeDiff };
+    }
+
+    function updateCurrentTimeDisplay() {
+      const timeDisplay = document.getElementById('current-time-display');
+      if (!timeDisplay) return; // العنصر غير موجود
+
+      const now = getCurrentTime();
+      const timeStr = now.toLocaleTimeString('ar-SA', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      });
+
+      // إضافة مؤشر وضع الاختبار
+      const displayText = testMode ? `${timeStr} (اختبار)` : timeStr;
+      timeDisplay.textContent = displayText;
+    }
+
+    function updateMealStatus() {
+      // التحقق من وجود العناصر المطلوبة
+      const statusElement = document.getElementById('meal-status-text');
+      const timerElement = document.getElementById('meal-timer');
+      const reserveBtn = document.getElementById('reserve-btn');
+
+      if (!statusElement || !reserveBtn) {
+        console.log('Meal status elements not found, skipping update');
+        return; // العناصر غير موجودة (ربما لسنا في صفحة الوجبات)
+      }
+
+      const activeMeal = getCurrentActiveMeal();
+      const texts = translations[currentLanguage];
+
+      console.log('Current time:', new Date().toLocaleTimeString());
+      console.log('Active meal:', activeMeal);
+
+      if (activeMeal) {
+        currentActiveMeal = activeMeal;
+        statusElement.textContent = `${texts.meal_available} - ${meals[activeMeal].name[currentLanguage]}`;
+        statusElement.className = 'status-available';
+
+        // تحديث القائمة المنسدلة للوجبة النشطة
+        if (mealType) {
+          mealType.value = activeMeal;
+          updateMealDetails(activeMeal);
+        }
+
+        // تفعيل زر الحجز
+        reserveBtn.disabled = false;
+        reserveBtn.textContent = texts.book_now;
+        reserveBtn.style.opacity = '1';
+        reserveBtn.style.cursor = 'pointer';
+
+        // إظهار المؤقت للوقت المتبقي
+        console.log('Calling showTimer for active meal:', activeMeal);
+        showTimer(activeMeal, 'remaining');
+
+      } else {
+        currentActiveMeal = null;
+        statusElement.textContent = texts.meal_not_available;
+        statusElement.className = 'status-unavailable';
+
+        // تعطيل زر الحجز
+        reserveBtn.disabled = true;
+        reserveBtn.textContent = texts.booking_disabled;
+        reserveBtn.style.opacity = '0.6';
+        reserveBtn.style.cursor = 'not-allowed';
+
+        // إظهار مؤقت للوجبة التالية
+        const nextMeal = getNextMeal();
+        if (nextMeal.mealId) {
+          showTimer(nextMeal.mealId, 'until_start', nextMeal.minutesUntil);
+        }
+      }
+    }
+
+    function showTimer(mealId, type, customMinutes = null) {
+      console.log('showTimer called:', { mealId, type, customMinutes });
+
+      const timerElement = document.getElementById('meal-timer');
+      const timerTitle = document.getElementById('timer-title');
+      const texts = translations[currentLanguage];
+
+      // التحقق من وجود العناصر
+      if (!timerElement || !timerTitle) {
+        console.error('Timer elements not found:', { timerElement, timerTitle });
+        return;
+      }
+
+      console.log('Showing timer for:', mealId, 'type:', type);
+      timerElement.style.display = 'block';
+
+      if (type === 'remaining') {
+        timerTitle.textContent = texts.time_remaining || 'الوقت المتبقي';
+        console.log('Starting countdown to end for meal:', mealId);
+        startCountdownToEnd(mealId);
+      } else if (type === 'until_start') {
+        timerTitle.textContent = texts.time_until_start || 'الوقت حتى الوجبة التالية';
+        if (customMinutes) {
+          console.log('Starting custom countdown:', customMinutes, 'minutes');
+          startCountdownCustom(customMinutes);
+        } else {
+          console.log('Starting countdown to start for meal:', mealId);
+          startCountdownToStart(mealId);
+        }
+      }
+    }
+
+    // العد التنازلي حتى نهاية الوجبة
+    function startCountdownToEnd(mealId) {
+      console.log('startCountdownToEnd called for:', mealId);
+
+      if (timerInterval) {
+        console.log('Clearing existing timer interval');
+        clearInterval(timerInterval);
+      }
+
+      const meal = meals[mealId];
+      if (!meal) {
+        console.error('Meal not found:', mealId);
+        return;
+      }
+
+      console.log('Meal details:', meal);
+
+      timerInterval = setInterval(() => {
+        const now = getCurrentTime();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes() + (now.getSeconds() / 60);
+
+        const targetMinutes = timeToMinutes(meal.endTime);
+        let diffMinutes = targetMinutes - currentMinutes;
+
+        console.log('Timer calculation:', {
+          currentTime: now.toLocaleTimeString(),
+          currentMinutes: currentMinutes.toFixed(2),
+          endTime: meal.endTime,
+          targetMinutes: targetMinutes,
+          diffMinutes: diffMinutes.toFixed(2)
+        });
+
+        // معالجة الأوقات عبر منتصف الليل
+        if (diffMinutes < 0) {
+          diffMinutes += 24 * 60;
+          console.log('Adjusted for midnight crossing:', diffMinutes.toFixed(2));
+        }
+
+        if (diffMinutes <= 0 || diffMinutes > 23 * 60) {
+          console.log('Timer ended, clearing interval');
+          clearInterval(timerInterval);
+          updateMealStatus(); // إعادة تحديث الحالة
+          return;
+        }
+
+        updateTimerDisplay(diffMinutes);
+      }, 1000);
+
+      console.log('Timer interval started');
+    }
+
+    // العد التنازلي حتى بداية الوجبة
+    function startCountdownToStart(mealId) {
+      if (timerInterval) clearInterval(timerInterval);
+
+      timerInterval = setInterval(() => {
+        const now = getCurrentTime();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes() + (now.getSeconds() / 60);
+        const meal = meals[mealId];
+
+        if (!meal) {
+          clearInterval(timerInterval);
+          return;
+        }
+
+        const targetMinutes = timeToMinutes(meal.startTime);
+        let diffMinutes = targetMinutes - currentMinutes;
+
+        // معالجة الأوقات عبر منتصف الليل
+        if (diffMinutes < 0) {
+          diffMinutes += 24 * 60;
+        }
+
+        if (diffMinutes <= 0) {
+          clearInterval(timerInterval);
+          updateMealStatus(); // إعادة تحديث الحالة
+          return;
+        }
+
+        updateTimerDisplay(diffMinutes);
+      }, 1000);
+    }
+
+    function startCountdownCustom(totalMinutes) {
+      if (timerInterval) clearInterval(timerInterval);
+
+      const startTime = Date.now();
+      const endTime = startTime + (totalMinutes * 60 * 1000);
+
+      timerInterval = setInterval(() => {
+        const now = Date.now();
+        const remaining = endTime - now;
+
+        if (remaining <= 0) {
+          clearInterval(timerInterval);
+          updateMealStatus();
+          return;
+        }
+
+        const remainingMinutes = remaining / (1000 * 60);
+        updateTimerDisplay(remainingMinutes);
+      }, 1000);
+    }
+
+    function updateTimerDisplay(totalMinutes) {
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = Math.floor(totalMinutes % 60);
+      const seconds = Math.floor((totalMinutes * 60) % 60);
+
+      // التحقق من وجود العناصر
+      const hoursElement = document.getElementById('hours');
+      const minutesElement = document.getElementById('minutes');
+      const secondsElement = document.getElementById('seconds');
+
+      if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+      if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+      if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+
+      console.log(`Timer: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+    }
+
+    // دالة لتحديث تفاصيل الوجبة
+    function updateMealDetails(selected) {
+      console.log('🔄 updateMealDetails called with:', selected);
+
+      // الحصول على العناصر
+      const mealName = document.getElementById('meal-name');
+      const mealDesc = document.getElementById('meal-desc');
+      const mealImg = document.getElementById('meal-img');
+      const mealOptions = document.getElementById('meal-options');
+      const mealTimeRange = document.getElementById('meal-time-range');
+
+      // التحقق من وجود العناصر
+      if (!mealName || !mealDesc || !mealImg || !mealOptions) {
+        console.error('❌ عناصر الوجبة غير موجودة:', {
+          mealName: !!mealName,
+          mealDesc: !!mealDesc,
+          mealImg: !!mealImg,
+          mealOptions: !!mealOptions
+        });
+
+        // محاولة إنشاء العناصر إذا لم تكن موجودة
+        if (!mealName) console.error('❌ meal-name element missing');
+        if (!mealDesc) console.error('❌ meal-desc element missing');
+        if (!mealImg) console.error('❌ meal-img element missing');
+        if (!mealOptions) console.error('❌ meal-options element missing');
+
+        return;
+      }
+
+      const meal = meals[selected];
+      if (!meal) {
+        console.error('❌ الوجبة غير موجودة:', selected);
+        console.log('📋 الوجبات المتاحة:', Object.keys(meals));
+        return;
+      }
+
+      const lang = currentLanguage || 'ar';
+      console.log('✅ تحديث تفاصيل الوجبة:', {
+        selected,
+        mealName: meal.name[lang],
+        lang
+      });
+
+      try {
+        // تحديث النصوص
+        mealName.textContent = meal.name[lang] || meal.name.ar || 'اسم الوجبة';
+        mealDesc.textContent = meal.desc[lang] || meal.desc.ar || 'وصف الوجبة';
+
+        // تحديث الصورة
+        mealImg.src = meal.img || 'images/default-meal.svg';
+        mealImg.alt = meal.name[lang] || 'صورة الوجبة';
+
+        // عرض توقيت الوجبة
+        const timeRange = `${meal.startTime} - ${meal.endTime}`;
+        if (mealTimeRange) {
+          mealTimeRange.textContent = timeRange;
+        }
+
+        // معالجة خطأ تحميل الصورة
+        mealImg.onerror = function() {
+          console.warn('⚠️ فشل تحميل صورة الوجبة:', meal.img);
+          this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjNmNGY2Ii8+CjxwYXRoIGQ9Ik0xMjUgNzVMMTc1IDEyNUgxMDBMMTI1IDc1WiIgZmlsbD0iIzlDQTNBRiIvPgo8Y2lyY2xlIGN4PSIxMjUiIGN5PSI3NSIgcj0iMTAiIGZpbGw9IiM5Q0EzQUYiLz4KPHR5cGUgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjM3MzgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNTAiIHk9IjE2MCI+2LXZiNix2Kkg2LrZitixINmF2KrYp9it2KnYqDwvdGV4dD4KPC9zdmc+';
+          this.alt = lang === 'ar' ? 'صورة غير متاحة' : 'Image not available';
+        };
+
+        // عرض الخيارات
+        mealOptions.innerHTML = '';
+        if (meal.options && meal.options[lang] && Array.isArray(meal.options[lang])) {
+          console.log('📝 إضافة خيارات الوجبة:', meal.options[lang]);
+          meal.options[lang].forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.textContent = opt;
+            btn.className = 'option-btn';
+            btn.onclick = function() {
+              document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+              btn.classList.add('selected');
+              console.log('✅ تم اختيار:', opt);
+            };
+            mealOptions.appendChild(btn);
+          });
+        } else {
+          console.warn('⚠️ لا توجد خيارات للوجبة:', selected);
+          // إضافة خيار افتراضي
+          const defaultBtn = document.createElement('button');
+          defaultBtn.textContent = lang === 'ar' ? 'اختيار' : 'Choice';
+          defaultBtn.className = 'option-btn selected';
+          mealOptions.appendChild(defaultBtn);
+        }
+
+        console.log('✅ تم تحديث تفاصيل الوجبة بنجاح');
+
+      } catch (error) {
+        console.error('❌ خطأ في تحديث تفاصيل الوجبة:', error);
+      }
+    }
+
+    // معالج تغيير الوجبة
+    function handleMealChange() {
+      console.log('🔄 تغيير نوع الوجبة...');
+
+      const mealTypeSelect = document.getElementById('meal-type');
+      if (mealTypeSelect) {
+        const selectedMeal = mealTypeSelect.value;
+        console.log('📋 الوجبة المختارة:', selectedMeal);
+        updateMealDetails(selectedMeal);
+      } else {
+        console.error('❌ عنصر اختيار الوجبة غير موجود');
+      }
+    }
+
+    // دالة مساعدة للتحقق من حالة الصفحة
+    function checkPageStatus() {
+      const status = {
+        section: document.querySelector('section:not(.hidden)')?.id || 'unknown',
+        mealType: document.getElementById('meal-type')?.value || 'none',
+        elementsFound: {
+          mealName: !!document.getElementById('meal-name'),
+          mealDesc: !!document.getElementById('meal-desc'),
+          mealImg: !!document.getElementById('meal-img'),
+          mealOptions: !!document.getElementById('meal-options')
+        }
+      };
+
+      console.log('📊 حالة الصفحة:', status);
+      return status;
+    }
+
+    // معالج الحجز
+    async function handleReservation() {
+      // التحقق من تسجيل الدخول
+      if (!canalAPI.isLoggedIn()) {
+        alert('يجب تسجيل الدخول أولاً');
+        return;
+      }
+
+      // التحقق من وجود عناصر الصفحة
+      if (!mealType) {
+        console.error('Meal type element not found');
+        return;
+      }
+
+      const selectedMealType = mealType.value;
+      const activeMeal = getCurrentActiveMeal();
+
+      // السماح بالحجز إذا كانت الوجبة المختارة هي الوجبة النشطة حالياً
+      if (!activeMeal || selectedMealType !== activeMeal) {
+        const texts = translations[currentLanguage];
+        const currentMealName = activeMeal ? meals[activeMeal].name[currentLanguage] : '';
+        const message = activeMeal ?
+          `${texts.booking_disabled}\n${currentLanguage === 'ar' ? 'الوجبة المتاحة حالياً:' : 'Currently available meal:'} ${currentMealName}` :
+          texts.booking_disabled;
+        alert(message);
+        return;
+      }
+
+      try {
+        // الحصول على معرف الوجبة من قاعدة البيانات
+        const mealsResult = await canalAPI.getAvailableMeals();
+        const meal = mealsResult.meals.find(m => m.meal_type === selectedMealType);
+
+        if (!meal) {
+          alert('الوجبة غير متاحة في قاعدة البيانات');
+          return;
+        }
+
+        const selectedOption = document.querySelector('.option-btn.selected');
+        const today = new Date().toISOString().split('T')[0];
+
+        // حجز الوجبة في قاعدة البيانات
+        const result = await canalAPI.bookMeal(meal.id, null, today);
+
+        if (result.success) {
+          const mealName = meals[selectedMealType].name[currentLanguage];
+          let msg = currentLanguage === 'ar' ? 'تم حجز الوجبة بنجاح!' : 'Meal booked successfully!';
+
+          if (selectedOption) {
+            msg += `\n${currentLanguage === 'ar' ? 'نوع الوجبة:' : 'Meal type:'} ${mealName} - ${selectedOption.textContent}`;
+          } else {
+            msg += `\n${currentLanguage === 'ar' ? 'نوع الوجبة:' : 'Meal type:'} ${mealName}`;
+          }
+
+          // إضافة الوقت الحالي للحجز
+          const now = new Date();
+          const timeStr = now.toLocaleTimeString(currentLanguage === 'ar' ? 'ar-SA' : 'en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          });
+          msg += `\n${currentLanguage === 'ar' ? 'وقت الحجز:' : 'Booking time:'} ${timeStr}`;
+          msg += `\n${currentLanguage === 'ar' ? 'رقم الحجز:' : 'Reservation ID:'} ${result.reservation_id}`;
+
+          alert(msg);
+
+          console.log('Reservation saved to database:', {
+            reservation_id: result.reservation_id,
+            meal: selectedMealType,
+            option: selectedOption ? selectedOption.textContent : 'default',
+            time: timeStr,
+            user: currentUser
+          });
+        } else {
+          alert(result.error || 'فشل في حجز الوجبة');
+        }
+      } catch (error) {
+        console.error('Reservation error:', error);
+        alert('حدث خطأ في عملية الحجز');
+      }
+    }
+
+    // تهيئة صفحة الوجبات عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🚀 تحميل الصفحة مكتمل، بدء التهيئة...');
+
+      // تأخير التهيئة للتأكد من تحميل جميع العناصر
+      setTimeout(() => {
+        console.log('⏰ بدء تهيئة صفحة الوجبات...');
+
+        // التحقق من وجود صفحة الوجبات
+        const mealsSection = document.getElementById('meals-section');
+        if (mealsSection && !mealsSection.classList.contains('hidden')) {
+          console.log('📄 صفحة الوجبات مفتوحة، تهيئة فورية...');
+          initializeMealsSection();
+        } else {
+          console.log('📄 صفحة الوجبات مخفية، تهيئة عند الحاجة');
+        }
+
+        // إضافة مستمع لتغيير القسم
+        const navLinks = document.querySelectorAll('[onclick*="showSection"]');
+        navLinks.forEach(link => {
+          const originalOnclick = link.getAttribute('onclick');
+          if (originalOnclick && originalOnclick.includes('meals-section')) {
+            link.addEventListener('click', function() {
+              setTimeout(() => {
+                console.log('🍽️ تم النقر على رابط الوجبات');
+                initializeMealsSection();
+              }, 200);
+            });
+          }
+        });
+
+      }, 1000);
     });
     </script>
 </body><script>

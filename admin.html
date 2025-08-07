@@ -8,8 +8,14 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="CANAL SUGAR Logo" class="logo">
-        <h1>CANAL SUGAR - لوحة المشرف</h1>
+        <div style="display:flex;align-items:center;justify-content:center;gap:18px;">
+          <img src="canal-sugar-logo.png" alt="شعار القناة للسكر" class="logo" onerror="this.src='canal-sugar-logo.svg'; this.onerror=null;">
+          <div class="company-name">
+            <h1 style="font-size:2.3rem;color:#2b6cb0;margin:0;">القناة للسكر</h1>
+            <p class="company-name-en">CANAL SUGAR</p>
+            <p class="admin-label">لوحة المشرف</p>
+          </div>
+        </div>
     </header>
     <main>
         <section class="admin-login-section">
@@ -34,8 +40,29 @@
                     </table>
                 </div>
                 <div class="card">
-                    <h3>تعديل صور الوجبات</h3>
-                    <button class="edit-btn">تعديل الصور</button>
+                    <h3>صور الوجبات الحالية</h3>
+                    <div class="meals-images-grid">
+                        <div class="meal-image-item">
+                            <img src="images/breakfast.svg" alt="فطور صباحي" class="admin-meal-img">
+                            <p>فطور صباحي</p>
+                            <button class="edit-image-btn" onclick="editMealImage('breakfast')">تغيير الصورة</button>
+                        </div>
+                        <div class="meal-image-item">
+                            <img src="images/lunch.svg" alt="غداء" class="admin-meal-img">
+                            <p>غداء</p>
+                            <button class="edit-image-btn" onclick="editMealImage('lunch')">تغيير الصورة</button>
+                        </div>
+                        <div class="meal-image-item">
+                            <img src="images/dinner.svg" alt="عشاء" class="admin-meal-img">
+                            <p>عشاء</p>
+                            <button class="edit-image-btn" onclick="editMealImage('dinner')">تغيير الصورة</button>
+                        </div>
+                        <div class="meal-image-item">
+                            <img src="images/suhour.svg" alt="سحور" class="admin-meal-img">
+                            <p>سحور</p>
+                            <button class="edit-image-btn" onclick="editMealImage('suhour')">تغيير الصورة</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="card">
                     <h3>تفعيل / تعطيل وجبة</h3>
@@ -58,6 +85,20 @@
             </div>
         </section>
     </main>
+    <script>
+    // كلمة السر المطلوبة
+    const ADMIN_PASSWORD = "canal2025";
+    document.querySelector('.admin-login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const password = this.querySelector('input[type="password"]').value;
+        if(password === ADMIN_PASSWORD) {
+            document.querySelector('.admin-login-section').style.display = 'none';
+            document.querySelector('.admin-dashboard').style.display = 'block';
+        } else {
+            alert('كلمة المرور غير صحيحة!');
+        }
+    });
+    </script>
     <footer>
         <p>جميع الحقوق محفوظة &copy; CANAL SUGAR 2025</p>
     </footer>

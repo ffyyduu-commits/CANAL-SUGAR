@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 القناة للسكر 2050 - نظام حجز الوجبات المستقبلي</title>
+    
+    <!-- 🎨 التصميم المستقبلي -->
+    <link rel="stylesheet" href="style-2050.css">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- 🗄️ قاعدة البيانات -->
+    <script src="database/database.js"></script>
+    <script src="database/api.js"></script>
+    
+    <!-- 🎯 Meta Tags للتحسين -->
+    <meta name="description" content="نظام حجز الوجبات المستقبلي لشركة القناة للسكر - تجربة مستخدم متطورة وسلسة">
+    <meta name="keywords" content="حجز وجبات, القناة للسكر, نظام مستقبلي, تطبيق ويب">
+    <meta name="author" content="القناة للسكر">
+    <meta name="theme-color" content="#0a0e27">
+    
+    <!-- 🌟 Preload للخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- 🚀 الهيدر المستقبلي -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="canal-sugar-logo.png" alt="شعار القناة للسكر" class="logo-img" onerror="this.src='canal-sugar-logo.svg'; this.onerror=function(){this.style.display='none'; document.querySelector('.logo-fallback').style.display='flex';};">
+                <div class="logo-fallback" style="display: none;">🏭</div>
+                <div class="logo-text">
+                    <h1 class="logo-title" data-translate="company_name">القناة للسكر</h1>
+                    <p class="logo-subtitle">نظام حجز الوجبات المستقبلي</p>
+                </div>
+            </div>
+            
+            <!-- 🌐 مبدل اللغة المستقبلي -->
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="ar">
+                    <span>🇸🇦</span>
+                    <span>عربي</span>
+                </button>
+                <button class="lang-btn" data-lang="en">
+                    <span>🇺🇸</span>
+                    <span>English</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 🔒 صفحة تسجيل الدخول المستقبلية -->
+        <section id="login-section" class="login-section">
+            <div class="login-container">
+                <div class="login-header">
+                    <h2 class="login-title" data-translate="login_title">تسجيل الدخول</h2>
+                    <p class="login-subtitle" data-translate="login_subtitle">أدخل بياناتك للوصول إلى النظام المستقبلي</p>
+                </div>
+
+                <form id="main-login-form" class="login-form">
+                    <div class="form-group">
+                        <input type="text" id="main-username" name="username" required placeholder="اسم المستخدم أو البريد الإلكتروني">
+                        <label for="main-username" data-translate="username_label">اسم المستخدم</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="main-password" name="password" required placeholder="كلمة المرور">
+                        <label for="main-password" data-translate="password_label">كلمة المرور</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="employee-name" name="employee_name" required placeholder="اسم الموظف الكامل">
+                        <label for="employee-name">اسم الموظف</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="employee-id" name="employee_id" required placeholder="رقم الموظف">
+                        <label for="employee-id">الرقم الوظيفي</label>
+                    </div>
+
+                    <!-- خيار الحفظ التلقائي -->
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember-me" name="remember_me">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">حفظ بياناتي تلقائياً</span>
+                        </label>
+                        <small class="checkbox-hint">سيتم حفظ البيانات محلياً لتسهيل الدخول المستقبلي</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" data-translate="login_button">
+                        <span>🚀</span>
+                        <span>دخول</span>
+                    </button>
+                    <div class="form-links">
+                        <a href="#" onclick="showForgotPassword()" data-translate="forgot_password">نسيت كلمة المرور؟</a>
+                        <a href="#" onclick="showRegisterForm()" data-translate="create_account">إنشاء حساب جديد</a>
+                        <a href="#" onclick="clearSavedData()" class="clear-data-link">🗑️ مسح البيانات المحفوظة</a>
+                    </div>
+                </form>
+
+                <!-- 🚀 الوصول السريع -->
+                <div class="quick-access">
+                    <button class="quick-btn" onclick="createAdminQuick()">
+                        <span>⚡</span>
+                        <span>إنشاء حساب المشرف السريع</span>
+                    </button>
+                    <small>للاختبار: admin / canal2025</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🏠 الصفحة الرئيسية المستقبلية -->
+        <section id="home-section" class="home-section hidden">
+            <div class="welcome-container">
+                <div class="user-welcome">
+                    <h2 id="welcome-message">مرحباً بك في النظام المستقبلي</h2>
+                    <p>اختر الخدمة التي تريدها من القائمة أدناه</p>
+                    
+                    <div class="user-actions">
+                        <span id="user-name-display">المستخدم</span>
+                        <div>
+                            <button class="admin-access-btn" onclick="showSection('admin-section')" title="لوحة المشرف">🔧</button>
+                            <button class="logout-btn-header" onclick="logout()">تسجيل الخروج</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎯 القائمة الرئيسية المستقبلية -->
+            <div class="main-menu">
+                <div class="menu-card" onclick="showSection('meal-section')">
+                    <div class="menu-icon">🍽️</div>
+                    <h3>حجز الوجبات</h3>
+                    <p>احجز وجبتك اليومية بسهولة وسرعة</p>
+                </div>
+
+                <div class="menu-card" onclick="showSection('reservations-section')">
+                    <div class="menu-icon">📋</div>
+                    <h3>حجوزاتي</h3>
+                    <p>عرض وإدارة جميع حجوزاتك</p>
+                </div>
+
+                <div class="menu-card" onclick="showSection('profile-section')">
+                    <div class="menu-icon">👤</div>
+                    <h3>الملف الشخصي</h3>
+                    <p>إدارة بياناتك الشخصية</p>
+                </div>
+
+                <div class="menu-card" onclick="showSection('admin-section')">
+                    <div class="menu-icon">🔧</div>
+                    <h3>لوحة المشرف</h3>
+                    <p>إدارة النظام والمستخدمين</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🍽️ صفحة الوجبات المستقبلية -->
+        <section id="meal-section" class="meal-section hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')">
+                    <span>←</span>
+                    <span>العودة للرئيسية</span>
+                </button>
+                <h2>🍽️ حجز الوجبات</h2>
+            </div>
+
+            <!-- ⏰ مؤشر الوقت المستقبلي -->
+            <div class="time-indicator">
+                <div class="current-time">
+                    <div class="time-display" id="current-time-display">00:00</div>
+                    <div class="meal-status" id="meal-status-text">جاري التحقق...</div>
+                </div>
+
+                <!-- ⏱️ المؤقت المستقبلي -->
+                <div class="meal-timer" id="meal-timer" style="display: none;">
+                    <div class="timer-title" id="timer-title">الوقت المتبقي</div>
+                    <div class="timer-display">
+                        <div class="timer-unit">
+                            <span class="timer-number" id="hours">00</span>
+                            <span class="timer-label">ساعة</span>
+                        </div>
+                        <div class="timer-unit">
+                            <span class="timer-number" id="minutes">00</span>
+                            <span class="timer-label">دقيقة</span>
+                        </div>
+                        <div class="timer-unit">
+                            <span class="timer-number" id="seconds">00</span>
+                            <span class="timer-label">ثانية</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎛️ تحكم الوجبات -->
+            <div class="meal-controls">
+                <div class="meal-type-selector">
+                    <label for="meal-type">اختر نوع الوجبة:</label>
+                    <select id="meal-type">
+                        <option value="breakfast">🌅 فطور صباحي</option>
+                        <option value="lunch">🍽️ غداء</option>
+                        <option value="dinner">🌙 عشاء</option>
+                        <option value="suhour">🌌 سحور</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 🍽️ تفاصيل الوجبة -->
+            <div class="meal-details">
+                <div class="meal-image-container">
+                    <img id="meal-img" class="meal-image" src="images/breakfast.svg" alt="صورة الوجبة">
+                </div>
+                
+                <div class="meal-info">
+                    <h3 id="meal-name">فطور صباحي</h3>
+                    <p class="meal-description" id="meal-desc">وجبة صباحية غنية بالطاقة</p>
+                    <div class="meal-time-info">
+                        <strong>⏰ أوقات الوجبة:</strong>
+                        <span id="meal-time-range">06:00 - 09:00</span>
+                    </div>
+                </div>
+
+                <!-- 🎯 خيارات الوجبة -->
+                <div class="meal-options" id="meal-options">
+                    <button class="option-btn selected">اختيار</button>
+                </div>
+
+                <!-- 🎫 زر الحجز المستقبلي -->
+                <button class="reserve-btn" id="reserve-btn">
+                    <span>🎫</span>
+                    <span>احجز الآن</span>
+                </button>
+            </div>
+
+            <!-- 📊 معلومات مفيدة للمستخدم -->
+            <div class="meal-info-panel">
+                <h4>📊 معلومات الوجبات</h4>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">📅</div>
+                        <div class="info-content">
+                            <div class="info-title">اليوم</div>
+                            <div class="info-value" id="current-date">الأحد، 15 يناير 2025</div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🍽️</div>
+                        <div class="info-content">
+                            <div class="info-title">الوجبات المتاحة اليوم</div>
+                            <div class="info-value">4 وجبات</div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">✅</div>
+                        <div class="info-content">
+                            <div class="info-title">حجوزاتي اليوم</div>
+                            <div class="info-value" id="my-reservations-count">0 حجز</div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-content">
+                            <div class="info-title">الوجبة التالية</div>
+                            <div class="info-value" id="next-meal">غداء - 12:00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- نصائح مفيدة -->
+                <div class="helpful-tips">
+                    <h5>💡 نصائح مفيدة:</h5>
+                    <ul>
+                        <li>يمكنك حجز الوجبة قبل موعدها بـ 30 دقيقة على الأقل</li>
+                        <li>تأكد من اختيار الخيار المناسب لك قبل الحجز</li>
+                        <li>يمكنك إلغاء الحجز من صفحة "حجوزاتي"</li>
+                        <li>في حالة وجود مشكلة، تواصل مع الإدارة</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 📋 صفحة الحجوزات -->
+        <section id="reservations-section" class="hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')">
+                    <span>←</span>
+                    <span>العودة للرئيسية</span>
+                </button>
+                <h2>📋 حجوزاتي</h2>
+                <button class="btn btn-secondary" onclick="loadUserReservations()">
+                    <span>🔄</span>
+                    <span>تحديث</span>
+                </button>
+            </div>
+            <div id="reservations-list">
+                <p class="no-reservations">جاري تحميل الحجوزات...</p>
+            </div>
+        </section>
+
+        <!-- 👤 صفحة الملف الشخصي -->
+        <section id="profile-section" class="hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')">
+                    <span>←</span>
+                    <span>العودة للرئيسية</span>
+                </button>
+                <h2>👤 الملف الشخصي</h2>
+            </div>
+            <div class="profile-info">
+                <p>معلومات المستخدم ستظهر هنا بعد تسجيل الدخول</p>
+            </div>
+        </section>
+
+        <!-- 🔧 لوحة المشرف -->
+        <section id="admin-section" class="hidden">
+            <div class="section-header">
+                <button class="back-btn" onclick="showSection('home-section')">
+                    <span>←</span>
+                    <span>العودة للرئيسية</span>
+                </button>
+                <h2>🔧 لوحة المشرف</h2>
+            </div>
+            
+            <div id="admin-login-container">
+                <div class="login-container">
+                    <div class="login-header">
+                        <h3>تسجيل دخول المشرف</h3>
+                        <p>يرجى إدخال بيانات المشرف للمتابعة</p>
+                    </div>
+                    <form id="admin-login-form">
+                        <div class="form-group">
+                            <input type="text" id="admin-username" required placeholder="اسم المستخدم">
+                            <label for="admin-username">اسم المستخدم</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="admin-password" required placeholder="كلمة المرور">
+                            <label for="admin-password">كلمة المرور</label>
+                        </div>
+                        <button type="submit" class="btn btn-warning">
+                            <span>🔐</span>
+                            <span>دخول المشرف</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="admin-dashboard" class="hidden">
+                <div class="admin-content">
+                    <h3>مرحباً بك في لوحة تحكم المشرف</h3>
+                    <p>يمكنك إدارة النظام من هنا</p>
+                    
+                    <div class="admin-actions">
+                        <button class="btn btn-success" onclick="exportData()">
+                            <span>📊</span>
+                            <span>تصدير إلى Excel</span>
+                        </button>
+                        <button class="btn btn-danger" onclick="resetSystem()">
+                            <span>🔄</span>
+                            <span>إعادة تعيين النظام</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="logoutAdmin()">
+                            <span>🚪</span>
+                            <span>تسجيل خروج المشرف</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 🚀 JavaScript المحسن -->
+    <script src="app-2050.js"></script>
+    
+    <!-- 🌐 ترجمات -->
+    <script>
+        const translations = {
+            ar: {
+                company_name: 'القناة للسكر',
+                login_title: 'تسجيل الدخول',
+                login_subtitle: 'أدخل بياناتك للوصول إلى النظام المستقبلي',
+                username_label: 'اسم المستخدم',
+                password_label: 'كلمة المرور',
+                login_button: 'دخول',
+                forgot_password: 'نسيت كلمة المرور؟',
+                create_account: 'إنشاء حساب جديد',
+                welcome_message: 'مرحباً بك في النظام المستقبلي'
+            },
+            en: {
+                company_name: 'Canal Sugar',
+                login_title: 'Login',
+                login_subtitle: 'Enter your credentials to access the futuristic system',
+                username_label: 'Username',
+                password_label: 'Password',
+                login_button: 'Login',
+                forgot_password: 'Forgot Password?',
+                create_account: 'Create New Account',
+                welcome_message: 'Welcome to the Futuristic System'
+            }
+        };
+    </script>
+</body>
+</html>

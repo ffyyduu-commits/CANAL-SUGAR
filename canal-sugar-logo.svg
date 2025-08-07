@@ -1,0 +1,35 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- خلفية دائرية متدرجة -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sugarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <circle cx="40" cy="40" r="38" fill="url(#bgGradient)" stroke="#1e40af" stroke-width="2"/>
+  
+  <!-- رمز القناة (موجات مائية محسنة) -->
+  <path d="M12 32 Q22 22 32 32 Q42 42 52 32 Q62 22 72 32" stroke="#60a5fa" stroke-width="2.5" fill="none" opacity="0.9"/>
+  <path d="M12 37 Q22 27 32 37 Q42 47 52 37 Q62 27 72 37" stroke="#93c5fd" stroke-width="2" fill="none" opacity="0.8"/>
+  <path d="M12 42 Q22 32 32 42 Q42 52 52 42 Q62 32 72 42" stroke="#dbeafe" stroke-width="1.5" fill="none" opacity="0.7"/>
+  
+  <!-- رمز السكر (بلورات محسنة) -->
+  <polygon points="40,18 46,28 34,28" fill="url(#sugarGradient)" opacity="0.9"/>
+  <polygon points="28,28 34,38 22,38" fill="url(#sugarGradient)" opacity="0.8"/>
+  <polygon points="52,28 58,38 46,38" fill="url(#sugarGradient)" opacity="0.8"/>
+  <polygon points="40,52 46,62 34,62" fill="url(#sugarGradient)" opacity="0.9"/>
+  
+  <!-- حلقة داخلية للتأثير -->
+  <circle cx="40" cy="40" r="32" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
+  
+  <!-- نقاط تزيينية -->
+  <circle cx="25" cy="25" r="1.5" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="55" cy="25" r="1.5" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="25" cy="55" r="1.5" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="55" cy="55" r="1.5" fill="#fbbf24" opacity="0.8"/>
+</svg>
